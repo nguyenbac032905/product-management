@@ -11,6 +11,9 @@ const port = process.env.PORT;
 app.set('views', './views');
 app.set('view engine', 'pug');
 
+//su dung file static
+app.use(express.static("public"));
+
 route(app);
 
 app.listen(port, () => {
