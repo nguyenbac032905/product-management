@@ -1,8 +1,11 @@
 
 const express = require("express");
+//import dotenv
+require('dotenv').config();
 const route = require("./routes/client/index.route");
 const app = express();
-const port = 3000;
+//su dung env
+const port = process.env.PORT;
 
 //khai bao pug
 app.set('views', './views');
