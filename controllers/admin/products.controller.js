@@ -2,6 +2,7 @@
 const Product = require("../../models/product.model");
 // [GET] /admin/products
 module.exports.index = async (req,res) => {
+    //filter status
     const filterStatus = [
         {
             name: "Tất cả",
@@ -25,7 +26,9 @@ module.exports.index = async (req,res) => {
         filterStatus[index].class = "active";
     }else{
         filterStatus[0].class = "active";
-    }
+    };
+    //search
+    let keyword = "";
 
     let find = {
         deleted: false
@@ -35,11 +38,21 @@ module.exports.index = async (req,res) => {
         find.status = req.query.status;
     };
 
+    if(req.query.keyword){
+        keyword = req.query.keyword;
+        
+        //sử dụng regex để tìm kiếm
+        const regex = new RegExp(keyword,"i");
+        console.log(regex)
+        find.title = regex;
+    };
+
     const products = await Product.find(find);
 
     res.render("admin/pages/products/index",{
         pageTitle: "Trang sản phẩm",
         products: products,
-        filterStatus: filterStatus
+        filterStatus: filterStatus,
+        keyword: keyword
     });
 }
