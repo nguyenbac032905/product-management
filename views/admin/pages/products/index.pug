@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/filterStatus.pug
+include ../../mixins/search.pug
 block main
     h1 Danh sách sản phẩm
 
@@ -10,16 +11,7 @@ block main
                 .col-6
                     +filterStatus(filterStatus)
                 .col-6 
-                    form#form-search
-                        .input-group
-                            input.form-control(
-                            type="text"
-                            placeholder="Nhập từ khóa"
-                            name="keyword"
-                            value=keyword
-                            )
-                            .input-group-append
-                            button.btn.btn-success(type="submit") Tìm
+                    +search(keyword)
 
     .card.mb-3
         .card-header Danh sách sản phẩm
