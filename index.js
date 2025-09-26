@@ -1,5 +1,7 @@
 //khai bao express
 const express = require("express");
+//khai báo method overide
+const methodOverride = require('method-override');
 //import dotenv
 require('dotenv').config();
 const route = require("./routes/client/index.route");
@@ -13,6 +15,9 @@ const database = require("./config/database");
 const systemConfig = require("./config/system");
 
 database.connect();
+
+//sử dụng ghi đè method
+app.use(methodOverride('_method'))
 //khai bao pug
 app.set('views', './views');
 app.set('view engine', 'pug');
