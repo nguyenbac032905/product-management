@@ -29,7 +29,10 @@ module.exports.index = async (req,res) => {
         req,
         countProducts
     );
-    const products = await Product.find(find).limit(objectPagination.limitItem).skip(objectPagination.skip);
+    const products = await Product.find(find)
+        .sort({position: "desc"})
+        .limit(objectPagination.limitItem)
+        .skip(objectPagination.skip);
 
     res.render("admin/pages/products/index",{
         pageTitle: "Trang sản phẩm",
@@ -64,6 +67,15 @@ module.exports.changeMulti = async (req,res) => {
         //xóa nhiều
         case "delete-all":
             await Product.updateMany({_id: {$in: ids}},{$set: {deleted: true, deletedAt: new Date()}});
+            break;
+        case "change-position":
+            for(item of ids){
+                let [id,position] = item.split("-");
+                position=parseInt(position);
+                await Product.updateOne({_id: {$in: id}},{$set: {position: position}});
+            }
+            // await Product.updateMany({_id: {$in: ids}},{$set: {status: "inactive"}});
+            break;
         default:
             break;
     }
