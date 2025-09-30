@@ -1,3 +1,5 @@
+
+
 // button status
 const buttonStatus = document.querySelectorAll("[button-status]");
 
@@ -47,7 +49,7 @@ if (buttonPagi) {
 
     item.addEventListener("click", () => {
       const page = item.getAttribute("button-pagination");
-
+      console.log(page);
       if(page){
         url.searchParams.set("page", page);
       }else{
@@ -127,3 +129,18 @@ if(formChangeMulti){
 
  });
 };
+//show alert
+const showAlert = document.querySelector("[show-alert]");
+const closeAlert = document.querySelector("[close-alert]");
+console.log(closeAlert)
+closeAlert.addEventListener("click",()=>{
+  showAlert.classList.add(("alert-hidden"));
+});
+
+if(showAlert){
+  const time = parseInt(showAlert.getAttribute("data-time"));
+
+  setTimeout(() => {
+    showAlert.classList.add(("alert-hidden"));
+  }, time);
+}
