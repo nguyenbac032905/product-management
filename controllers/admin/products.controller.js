@@ -104,10 +104,17 @@ module.exports.create = async (req,res) => {
     })
 };
 module.exports.createPost = async (req,res) => {
+    if(!req.body.title){
+        req.flash("error","vui lòng nhập tiêu đề");
+        res.redirect(`${systemConfig.prefixAdmin}/products/create`);
+        return;
+    }
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
-    req.body.thumbnail = `/uploads/${req.file.filename}`;
+    if(req.file){
+        req.body.thumbnail = `/uploads/${req.file.filename}`;
+    }
     if(req.body.position == ""){
         const countProducts = await Product.countDocuments()
         req.body.position = countProducts + 1;
