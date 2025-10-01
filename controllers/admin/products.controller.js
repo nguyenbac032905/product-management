@@ -97,18 +97,15 @@ module.exports.deleteProduct = async (req,res) => {
     res.redirect(req.get("Referer") || "/admin/products");
 };
 
-//[GET] /admin/create
+//[GET] /admin/products/create
 module.exports.create = async (req,res) => {
     res.render("admin/pages/products/create",{
         pageTitle: "Tạo sản phẩm"
     })
 };
+//[POST] /admin/products/create
 module.exports.createPost = async (req,res) => {
-    if(!req.body.title){
-        req.flash("error","vui lòng nhập tiêu đề");
-        res.redirect(`${systemConfig.prefixAdmin}/products/create`);
-        return;
-    }
+    
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
@@ -126,4 +123,42 @@ module.exports.createPost = async (req,res) => {
     await product.save();
 
     res.redirect(`${systemConfig.prefixAdmin}/products`);
+};
+//[GET] /admin/products/edit/:id
+module.exports.edit = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const find ={
+            deleted: false,
+            _id: id
+        };
+        const product = await Product.findOne(find);
+        res.render("admin/pages/products/edit",{
+            pageTitle: "Sửa sản phẩm",
+            product: product
+        });
+    } catch (error) {
+        req.flash("error","không tồn tại sản phẩm");
+        res.redirect(`${systemConfig.prefixAdmin}/products`);
+    }
+};
+//[PATCH] /admin/products/edit/:id
+module.exports.editPatch = async (req,res) => {
+    const id = req.params.id;
+    req.body.price = parseInt(req.body.price);
+    req.body.discountPercentage = parseInt(req.body.discountPercentage);
+    req.body.stock = parseInt(req.body.stock);
+    req.body.position = parseInt(req.body.position);
+    if(req.file){
+        req.body.thumbnail = `/uploads/${req.file.filename}`;
+    }
+    //cú pháp patch
+    try {
+        await Product.updateOne({_id: id}, req.body);
+        req.flash("success","cập nhật thành công");
+    } catch (error) {
+        req.flash("error","cập nhật thất bại");
+    }
+
+    res.redirect(req.get("Referer") || "/admin/products");
 };
