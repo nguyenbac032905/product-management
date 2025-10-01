@@ -26,7 +26,9 @@ if(buttonChangeStatus.length > 0){
 const buttonsDelete = document.querySelectorAll("[button-delete]");
 if(buttonsDelete){
     const formDeleteProduct = document.querySelector("#form-delete-product");
-    const path = formDeleteProduct.getAttribute("data-path");
+    if(formDeleteProduct){
+        const path = formDeleteProduct.getAttribute("data-path");
+    }
     buttonsDelete.forEach(button => {
 
         button.addEventListener("click", () => {

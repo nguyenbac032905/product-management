@@ -132,15 +132,28 @@ if(formChangeMulti){
 //show alert
 const showAlert = document.querySelector("[show-alert]");
 const closeAlert = document.querySelector("[close-alert]");
-console.log(closeAlert)
-closeAlert.addEventListener("click",()=>{
+if(closeAlert){
+  closeAlert.addEventListener("click",()=>{
   showAlert.classList.add(("alert-hidden"));
 });
-
+}
 if(showAlert){
   const time = parseInt(showAlert.getAttribute("data-time"));
 
   setTimeout(() => {
     showAlert.classList.add(("alert-hidden"));
   }, time);
+}
+
+//upload ảnh
+const uploadImage = document.querySelector("[upload-image]");
+if(uploadImage){
+  const uploadImageInput = document.querySelector("[upload-image-input]");
+  const uploadPreviewInput = document.querySelector("[upload-image-preview]");
+  uploadImageInput.addEventListener("change",(e) =>{
+    const file = e.target.files[0];
+    if(file){
+      uploadPreviewInput.src = URL.createObjectURL(file);
+    }
+  })
 }
