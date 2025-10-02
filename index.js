@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded())
 //sử dụng ghi đè method
 app.use(methodOverride('_method'))
 //khai bao pug
-app.set('views', './views');
+app.set('views', `${__dirname}/views`);
 app.set('view engine', 'pug');
 //sử dụng flash
 app.use(cookieParser('diencookieoday'));
@@ -36,7 +36,7 @@ app.use(flash());
 
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
 //su dung file static
-app.use(express.static("public"));
+app.use(express.static(`${__dirname}/public`));
 
 routeAdmin(app);
 route(app);
