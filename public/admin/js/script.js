@@ -156,4 +156,11 @@ if(uploadImage){
       uploadPreviewInput.src = URL.createObjectURL(file);
     }
   })
+
+  //button xóa image upload
+  const buttonDeleteImage = uploadImage.querySelector("[button-delete-image]");
+  buttonDeleteImage.addEventListener("click",() => {
+    uploadPreviewInput.src = "";
+    uploadImageInput.value = "";
+  })
 }
