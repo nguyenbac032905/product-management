@@ -37,6 +37,9 @@ app.use(flash());
 app.locals.prefixAdmin = systemConfig.prefixAdmin;
 //su dung file static
 app.use(express.static(`${__dirname}/public`));
+//tiny MCE
+var path = require('path');
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 routeAdmin(app);
 route(app);

@@ -124,7 +124,6 @@ module.exports.createPost = async (req,res) => {
        req.body.position = parseInt(req.body.position);
     }
     //cú pháp tạo mới
-    console.log(req.body)
     const product = new Product(req.body);
     await product.save();
 
@@ -173,7 +172,6 @@ module.exports.detail = async (req,res) => {
         };
 
         const product = await Product.findOne(find);
-        console.log(product)
         res.render("admin/pages/products/detail",{
             pageTitle: product.title,
             product: product
