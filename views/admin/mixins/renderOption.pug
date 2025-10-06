@@ -1,0 +1,5 @@
+mixin renderOption(item,prefix)
+    option(value=item._id) #{prefix + item.title}
+    -if(item.children && item.children.length > 0)
+        each child in item.children 
+            +renderOption(child,prefix + "-- ")
