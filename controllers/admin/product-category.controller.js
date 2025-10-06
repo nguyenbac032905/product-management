@@ -8,7 +8,7 @@ module.exports.index = async (req,res) => {
     };
 
     const records = await ProductCategory.find(find).lean();
-    const newRecords = createTreeHelper(records);
+    const newRecords = createTreeHelper.tree(records);
 
     res.render("admin/pages/product-category/index",{
         pageTitle: "Trang Danh Mục",
@@ -22,7 +22,7 @@ module.exports.create = async (req,res) => {
     };
 
     const records = await ProductCategory.find(find).lean();
-    const newRecords = createTreeHelper(records);
+    const newRecords = createTreeHelper.tree(records);
     res.render("admin/pages/product-category/create",{
         pageTitle: "Trang Tạo Danh Mục",
         records: newRecords
