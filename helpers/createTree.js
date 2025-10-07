@@ -6,7 +6,9 @@ function createTree(arr, parent_id = "") {
       count++;
       const newItem = { ...item };
       newItem.index = count;
-      const children = createTree(arr, item._id); // ✅ gọi được vì là function declaration
+      //chuyển id từ buffer về string
+      newItem.id = newItem._id.toString();
+      const children = createTree(arr, item._id);
       newItem.children = children.length ? children : [];
       tree.push(newItem);
     }
