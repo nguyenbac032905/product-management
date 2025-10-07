@@ -1,5 +1,6 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/renderOption.pug
 
 block main
     +alertError(3000)
@@ -20,6 +21,13 @@ block main
             required
             value=product.title
             )
+        div.form-group
+            label(for="product_category_id") Danh mục
+            select(name="product_category_id" id="product_category_id" class="form-control")
+                option(value="") --Chọn danh mục--
+                if records
+                each item in records
+                    +renderOption(item,"",product.product_category_id)
 
         div.form-group
             label(for="desc") Mô tả

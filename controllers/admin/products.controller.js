@@ -111,7 +111,6 @@ module.exports.deleteProduct = async (req,res) => {
 module.exports.create = async (req,res) => {
     const records = await ProductCategory.find({deleted: false}).lean();
     const newRecords = createTreeHelper.tree(records);
-    console.log(newRecords);
     res.render("admin/pages/products/create",{
         pageTitle: "Tạo sản phẩm",
         records: newRecords
@@ -144,9 +143,12 @@ module.exports.edit = async (req,res) => {
             _id: id
         };
         const product = await Product.findOne(find);
+        const records = await ProductCategory.find({deleted: false}).lean();
+        const newRecords = createTreeHelper.tree(records);
         res.render("admin/pages/products/edit",{
             pageTitle: "Sửa sản phẩm",
-            product: product
+            product: product,
+            records: newRecords
         });
     } catch (error) {
         req.flash("error","không tồn tại sản phẩm");
