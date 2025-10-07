@@ -1,5 +1,5 @@
-mixin renderOption(item,prefix)
-    option(value=item._id) #{prefix + item.title}
+mixin renderOption(item,prefix,parent_id)
+    option(value=item._id selected=item._id == parent_id) #{prefix + item.title}
     -if(item.children && item.children.length > 0)
         each child in item.children 
-            +renderOption(child,prefix + "-- ")
+            +renderOption(child,prefix + "-- ",parent_id)

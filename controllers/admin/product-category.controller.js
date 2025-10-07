@@ -13,9 +13,7 @@ module.exports.index = async (req,res) => {
     };
 
     const records = await ProductCategory.find(find).lean();
-    console.log(records);
     const newRecords = createTreeHelper.tree(records);
-    console.log(newRecords);
     res.render("admin/pages/product-category/index",{
         pageTitle: "Trang Danh Mục",
         category: newRecords,
@@ -57,5 +55,35 @@ module.exports.changeStatus = async (req,res) => {
         req.flash("error", "cập nhật thất bại");
     } finally{
         res.redirect(req.get("Referer") || `/${systemConfig.prefixAdmin}/product-category`);
+    }
+};
+module.exports.edit = async (req,res) => {
+    try {
+        const id = req.params.id;
+        const find = {
+            deleted: false,
+            _id : id
+        };
+        const category = await ProductCategory.findOne(find);
+        
+        const records = await ProductCategory.find({deleted: false}).lean();
+        const newRecords = createTreeHelper.tree(records);
+        res.render("admin/pages/product-category/edit",{
+            pageTitle: "Chỉnh Sửa Sản Phẩm",
+            category: category,
+            records: newRecords
+        })
+    } catch (error) {
+        res.redirect(`${systemConfig.prefixAdmin}/product-category`);
+    }
+};
+module.exports.editPatch = async (req,res) => {
+    try {
+        const id = req.params.id;
+        req.body.position = parseInt(req.body.position);
+        await ProductCategory.updateOne({_id: id},req.body);
+        res.redirect(req.get("Referer") || `${systemConfig.prefixAdmin}/product-category`);
+    } catch (error) {
+        res.redirect(req.get("Referer") || `${systemConfig.prefixAdmin}/product-category`);
     }
 };
