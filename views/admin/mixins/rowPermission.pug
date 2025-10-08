@@ -1,0 +1,11 @@
+mixin rowPermission(records,title,area,permission)
+    tr  
+        td(colspan="4")
+            b #{title}
+    each item in permission
+        - const [action,name] = item.split("-")
+        tr(data-name=`${area}_${action}`)
+            td #{name}
+            each item in records
+                td(class="text-center")
+                    input(type="checkbox")

@@ -195,4 +195,4 @@ if(sort){
     const optionSelected = sortSelect.querySelector(`option[value=${stringSort}]`);
     optionSelected.setAttribute("selected",true);
   }
-}
+};
