@@ -92,5 +92,5 @@ module.exports.editPatch = async (req,res) => {
     } catch (error) {
         req.flash("success","cập nhật Thất Bại");
     }
-    res.redirect(res.get("Referer") || `${systemConfig.prefixAdmin}/accounts/edit/${req.params.id}`)
+    res.redirect(res.get("Referer") || `${systemConfig.prefixAdmin}/accounts/edit/${req.params.id}`);
 };
