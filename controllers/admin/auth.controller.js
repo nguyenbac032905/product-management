@@ -29,17 +29,17 @@ module.exports.loginPost = async (req,res) => {
     
     if(!user){
         req.flash("error","email không tồn tại");
-        res.redirect(res.ges("Referer") || `${systemConfig.prefixAdmin}/auth/login`);
+        res.redirect(res.get("Referer") || `${systemConfig.prefixAdmin}/auth/login`);
         return;
     }
     if(md5(password) != user.password ){
         req.flash("error","Sai mật khẩu");
-        res.redirect(res.ges("Referer") || `${systemConfig.prefixAdmin}/auth/login`);
+        res.redirect(res.get("Referer") || `${systemConfig.prefixAdmin}/auth/login`);
         return;
     }
     if(user.status != "active"){
         req.flash("error","Tài khoản đã bị khóa");
-        res.redirect(res.ges("Referer") || `${systemConfig.prefixAdmin}/auth/login`);
+        res.redirect(res.get("Referer") || `${systemConfig.prefixAdmin}/auth/login`);
         return;
     }
     //tạo cookie bên backend

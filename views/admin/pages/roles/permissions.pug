@@ -2,50 +2,53 @@ extends ../../layouts/default.pug
 include ../../mixins/alert.pug
 include ../../mixins/rowPermission.pug
 block main
-    
-    +alertSuccess(3000)
-    +alertError(3000)
-    h1(class="mb-4") Phân quyền
-    if(records)
-        div(data-records=records)
-        .text-right
-            button(
-            type="submit"
-            class="btn btn-primary mb-3"
-            button-submit
-            ) Cập nhật
+    if(role.permission.includes("roles_permission"))
+        +alertSuccess(3000)
+        +alertError(3000)
+        h1(class="mb-4") Phân quyền
+        if(records)
+            div(data-records=records)
+            .text-right
+                button(
+                type="submit"
+                class="btn btn-primary mb-3"
+                button-submit
+                ) Cập nhật
 
-        table(class="table table-hover table-sm" table-permission)
-            thead
-                tr
-                    th Tính năng
-                    each item in records
-                        th(class="text-center") #{item.title}
-            tbody
-                tr(data-name="id" class="d-none")
-                    td 
-                    each item in records 
-                        td(class="text-center")
-                            input(type="text" value=item.id)
-                //- danh mục sp
-                -   const permission = ["view-Xem","create-Thêm mới","edit-Chỉnh sửa","delete-Xóa"]
-                -   const permissionManage =  [...permission,"permission-Phân quyền"]
-                +rowPermission(records,"Danh mục sản phẩm","products-category",permission)
-                //- sản phẩm
-                +rowPermission(records,"Sản phẩm","products",permission)
-                //-nhóm quyền
-                +rowPermission(records,"Nhóm quyền","roles",permissionManage)
-                
-    form(
-        id="form-change-permissions"
-        method="POST"
-        action=`${prefixAdmin}/roles/permissions?_method=PATCH`
-        class="d-none"
-    )
-        .form-group
-            input(
-            type="text"
-            class="form-control"
-            name="permissions"
-            )
-    script(src="/admin/js/roles.js")
+            table(class="table table-hover table-sm" table-permission)
+                thead
+                    tr
+                        th Tính năng
+                        each item in records
+                            th(class="text-center") #{item.title}
+                tbody
+                    tr(data-name="id" class="d-none")
+                        td 
+                        each item in records 
+                            td(class="text-center")
+                                input(type="text" value=item.id)
+                    //- danh mục sp
+                    -   const permission = ["view-Xem","create-Thêm mới","edit-Chỉnh sửa","delete-Xóa"]
+                    -   const permissionManage =  [...permission,"permission-Phân quyền"]
+                    +rowPermission(records,"Danh mục sản phẩm","products-category",permission)
+                    //- sản phẩm
+                    +rowPermission(records,"Sản phẩm","products",permission)
+                    //-nhóm quyền
+                    +rowPermission(records,"Nhóm quyền","roles",permissionManage)
+                    //-phân quyền
+                    +rowPermission(records,"Tài Khoản","accounts",permission)
+                    
+        form(
+            id="form-change-permissions"
+            method="POST"
+            action=`${prefixAdmin}/roles/permissions?_method=PATCH`
+            class="d-none"
+        )
+            .form-group
+                input(
+                type="text"
+                class="form-control"
+                name="permissions"
+                )
+        script(src="/admin/js/roles.js")
+    div bạn không có quyền phân quyền

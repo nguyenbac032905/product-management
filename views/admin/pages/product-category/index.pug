@@ -3,45 +3,49 @@ include ../../mixins/table-tree.pug
 include ../../mixins/alert.pug
 include ../../mixins/filterStatus.pug
 block main
-    +alertError(3000)
-    +alertSuccess(300)
-    h1 Danh mục sản phẩm
-    .card.mb-3
-        .card-header Bộ lọc và Tìm kiếm
-        .card-body
-            .row
-                .col-6
-                    +filterStatus(filterStatus)
-                .col-6 
-                    
-    .card.mb-3
-        .card-header Danh sách sản phẩm
-        .card-body
-            .row 
-                .col-8
-                .col-4 
-                    a.btn.btn-outline-success(href=`${prefixAdmin}/product-category/create`) Thêm mới
+    if(role.permission.includes("products-category_view"))
+        +alertError(3000)
+        +alertSuccess(300)
+        h1 Danh mục sản phẩm
+        .card.mb-3
+            .card-header Bộ lọc và Tìm kiếm
+            .card-body
+                .row
+                    .col-6
+                        +filterStatus(filterStatus)
+                    .col-6 
+                        
+        .card.mb-3
+            .card-header Danh sách sản phẩm
+            .card-body
+                .row 
+                    .col-8
+                    .col-4
+                        if(role.permission.includes("products-category_create"))
+                            a.btn.btn-outline-success(href=`${prefixAdmin}/product-category/create`) Thêm mới
 
-            table(class="table table-hover table-sm" checkbox-multi)
-                thead
-                    tr
-                        th 
-                            input(type="checkbox" name="checkall")
-                        th STT
-                        th Hình ảnh
-                        th Tiêu đề
-                        th Vị trí
-                        th Trạng thái
-                        th Hành động
-                tbody
-                    each item,index in category
-                        +table-tree(item,"")
+                table(class="table table-hover table-sm" checkbox-multi)
+                    thead
+                        tr
+                            th 
+                                input(type="checkbox" name="checkall")
+                            th STT
+                            th Hình ảnh
+                            th Tiêu đề
+                            th Vị trí
+                            th Trạng thái
+                            th Hành động
+                    tbody
+                        each item,index in category
+                            +table-tree(item,"")
 
-    form(
-        action="" 
-        method="POST"
-        id="form-change-status"
-        data-path=`${prefixAdmin}/product-category/change-status`
-    )
-    
-    script(src="/admin/js/product-category.js")
+        form(
+            action="" 
+            method="POST"
+            id="form-change-status"
+            data-path=`${prefixAdmin}/product-category/change-status`
+        )
+        
+        script(src="/admin/js/product-category.js")
+    else 
+        div Bạn không có quyền xem danh mục sản phẩm
