@@ -89,7 +89,13 @@ module.exports.changeMulti = async (req,res) => {
             break;
         //xóa nhiều
         case "delete-all":
-            await Product.updateMany({_id: {$in: ids}},{$set: {deleted: true, deletedAt: new Date()}});
+            await Product.updateMany({_id: {$in: ids}},{$set: {
+                deleted: true,
+                deletedBy:{
+                    account_id: res.locals.user.id,
+                    deletedAt: new Date()
+                }
+            }});
             req.flash('success', `đã xóa ${ids.length} sản phẩm`);
             break;
         case "change-position":
@@ -109,12 +115,20 @@ module.exports.changeMulti = async (req,res) => {
 
 //[DELETE] /admin/products/delete/:id
 module.exports.deleteProduct = async (req,res) => {
-    const id = req.params.id;
-    // await Produuct.deleteOne({_id: id});
-    await Product.updateOne({_id: id},{deleted: true, deletedAt: new Date()});
-    req.flash('success', `xóa thành công`);
-
-    res.redirect(req.get("Referer") || "/admin/products");
+    try {
+        const id = req.params.id;
+        await Product.updateOne({_id: id},{
+            deleted: true,
+            deletedBy: {
+                account_id: res.locals.user.id,
+                deletedAt: new Date()
+            }
+        });
+        req.flash('success', `xóa thành công`);
+    } catch (error) {
+        req.flash('error', `xóa thất bại`);
+    }
+    res.redirect(req.get("Referer") || `${systemConfig.prefixAdmin}/products`);
 };
 
 //[GET] /admin/products/create
