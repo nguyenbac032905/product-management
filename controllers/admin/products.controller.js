@@ -1,5 +1,6 @@
 
 const Product = require("../../models/product.model");
+const Account = require("../../models/account.model");
 const filterStatusHelper = require("../../helpers/filterStatus");
 const searchHelper = require("../../helpers/search");
 const paginationHelper = require("../../helpers/pagination");
@@ -44,6 +45,15 @@ module.exports.index = async (req,res) => {
         .sort(sort)
         .limit(objectPagination.limitItem)
         .skip(objectPagination.skip);
+
+    for(const item of products){
+        const user = await Account.findOne({
+            _id: item.createdBy.account_id
+        });
+        if(user){
+            item.accountFullname = user.fullName;
+        };
+    }
 
     res.render("admin/pages/products/index",{
         pageTitle: "Trang sản phẩm",
@@ -128,7 +138,12 @@ module.exports.createPost = async (req,res) => {
     }else{
        req.body.position = parseInt(req.body.position);
     }
-    //cú pháp tạo mới
+
+    const user = res.locals.user;
+    req.body.createdBy = {
+        account_id: user.id
+    };
+    // cú pháp tạo mới
     const product = new Product(req.body);
     await product.save();
 

@@ -40,6 +40,10 @@ app.use(express.static(`${__dirname}/public`));
 //tiny MCE
 var path = require('path');
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+//moment
+const moment = require('moment');
+app.locals.moment =moment;
+
 
 routeAdmin(app);
 route(app);

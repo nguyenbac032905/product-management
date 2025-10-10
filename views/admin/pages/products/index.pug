@@ -5,6 +5,7 @@ include ../../mixins/pagination.pug
 include ../../mixins/formChangeMulti.pug
 include ../../mixins/alert.pug
 include ../../mixins/sort.pug
+include ../../mixins/moment.pug
 block main
     if(role.permission.includes("products_view"))
         +alertSuccess(3000)
@@ -47,6 +48,7 @@ block main
                             th Giá
                             th Vị trí
                             th Trạng thái
+                            th Người tạo
                             th Hành động
                     tbody
                         each item,index in products
@@ -67,6 +69,7 @@ block main
                                     )
                                 td #{item.title}
                                 td #{item.price}$
+
                                 td  
                                     input(
                                         type="number"
@@ -87,6 +90,10 @@ block main
                                             button(class="badge badge-success") Hoạt động
                                         else 
                                             button(class="badge badge-danger") Dừng hoạt động
+                                td 
+                                    p #{item.accountFullname}
+                                    if(item.createdBy.createdAt)
+                                        +formatDateTime(item.createdBy.createdAt)
                                 td  
                                     if(role.permission.includes("products_edit"))
                                         a(href=`${prefixAdmin}/products/edit/${item.id}` class="btn btn-warning btn-sm") Sửa
