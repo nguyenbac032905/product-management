@@ -61,7 +61,6 @@ module.exports.index = async (req,res) => {
             });
             updatedBy.accountFullname = userUpdated.fullName
         }
-        console.log(item)
     }
     res.render("admin/pages/products/index",{
         pageTitle: "Trang sản phẩm",
@@ -78,8 +77,8 @@ module.exports.changeStatus = async (req,res) => {
     const id = req.params.id;
 
     const updatedBy = {
-            account_id: res.locals.user.id,
-            updatedAt: new Date()
+        account_id: res.locals.user.id,
+        updatedAt: new Date()
     };
     
     await Product.updateOne({_id: id},{status: status,$push: {updatedBy: updatedBy}});

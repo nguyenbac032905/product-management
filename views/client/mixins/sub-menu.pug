@@ -1,0 +1,7 @@
+mixin sub-menu(pathProduct,layoutProductCategory)
+    ul
+        each item in layoutProductCategory
+            li
+                a(href=`${pathProduct}/${item.slug}`) #{item.title}
+                - if(item.children&&item.children.length > 0)
+                    +sub-menu(pathProduct,item.children)
