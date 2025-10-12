@@ -49,6 +49,7 @@ block main
                             th Vị trí
                             th Trạng thái
                             th Người tạo
+                            th Người sửa
                             th Hành động
                     tbody
                         each item,index in products
@@ -94,6 +95,12 @@ block main
                                     p #{item.accountFullname}
                                     if(item.createdBy.createdAt)
                                         +formatDateTime(item.createdBy.createdAt)
+                                td 
+                                    - const updatedBy = item.updatedBy[item.updatedBy.length - 1]
+                                    if(updatedBy)
+                                        p #{updatedBy.accountFullname}
+                                        p
+                                            +formatDateTime(updatedBy.updatedAt)
                                 td  
                                     if(role.permission.includes("products_edit"))
                                         a(href=`${prefixAdmin}/products/edit/${item.id}` class="btn btn-warning btn-sm") Sửa
