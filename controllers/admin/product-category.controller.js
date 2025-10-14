@@ -1,4 +1,5 @@
 const ProductCategory = require("../../models/product-category.model");
+const Account = require("../../models/account.model");
 const systemConfig = require("../../config/system");
 const createTreeHelper = require("../../helpers/createTree");
 const filterStatusHelper = require("../../helpers/filterStatus");
@@ -35,14 +36,19 @@ module.exports.create = async (req,res) => {
 };
 // [GET]/product-category/create
 module.exports.createPost = async (req,res) => {
-    if(req.body.position == ""){
-        const count = await ProductCategory.countDocuments()
-        req.body.position = count + 1;
+    const permission = res.locals.role.permission;
+    if(permission.includes("products-category_create")){
+        if(req.body.position == ""){
+            const count = await ProductCategory.countDocuments()
+            req.body.position = count + 1;
+        }else{
+        req.body.position = parseInt(req.body.position);
+        }
+        const record = new ProductCategory(req.body);
+        await record.save();
     }else{
-       req.body.position = parseInt(req.body.position);
+        return;
     }
-    const record = new ProductCategory(req.body);
-    await record.save();
     res.redirect(`${systemConfig.prefixAdmin}/product-category`);
 };
 module.exports.changeStatus = async (req,res) => {

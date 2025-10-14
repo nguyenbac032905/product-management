@@ -26,6 +26,26 @@ block main
                 if records
                 each item in records
                     +renderOption(item,"")
+        
+        div.form-group.form-check.form-check-inline
+            input.form-check-input(
+                type="radio"
+                id="featured1"
+                name="featured"
+                value="1"
+            )
+            label.form-check-label(for="featured1") Nổi bật
+
+        div.form-group.form-check.form-check-inline
+            input.form-check-input(
+                type="radio"
+                id="featured0"
+                name="featured"
+                value="0"
+                checked
+            )
+            label.form-check-label(for="featured0") Không
+
         div.form-group
             label(for="desc") Mô tả
             textarea(

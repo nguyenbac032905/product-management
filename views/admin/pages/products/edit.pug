@@ -29,6 +29,26 @@ block main
                 each item in records
                     +renderOption(item,"",product.product_category_id)
 
+        div.form-group.form-check.form-check-inline
+            input.form-check-input(
+                type="radio"
+                id="featured1"
+                name="featured"
+                value="1"
+                checked = (product.featured == "1")
+            )
+            label.form-check-label(for="featured1") Nổi bật
+
+        div.form-group.form-check.form-check-inline
+            input.form-check-input(
+                type="radio"
+                id="featured0"
+                name="featured"
+                value="0"
+                checked = (product.featured == "0")
+            )
+            label.form-check-label(for="featured0") Không
+
         div.form-group
             label(for="desc") Mô tả
             textarea(
