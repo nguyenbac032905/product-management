@@ -1,3 +1,4 @@
 extends ../../layouts/default.pug
+include ../../mixins/product-layout.pug
 block main 
-    h1 trang chủ
+    +product-grid("Sản phẩm nổi bật", productsFeatured)

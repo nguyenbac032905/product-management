@@ -1,0 +1,11 @@
+include ./box-head.pug
+include ./product-item.pug
+mixin product-grid(title,products)
+    .container.my-3
+        .row
+            .col-12
+                +box-head(title)
+        .row 
+            each item in products
+                +product-item(item)
+                
