@@ -223,7 +223,7 @@ module.exports.editPatch = async (req,res) => {
         req.flash("error","cập nhật thất bại");
     }
 
-    res.redirect(req.get("Referer") || "/admin/products");
+    res.redirect(`${systemConfig.prefixAdmin}/products`);
 };
 module.exports.detail = async (req,res) => {
     try {

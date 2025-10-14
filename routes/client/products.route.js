@@ -7,7 +7,9 @@ const controller = require("../../controllers/client/product.controller");
 
 //nối phần index truyền vào thành /products/
 router.get("/", controller.index);
-router.get("/:slug", controller.detail);
+router.get("/detail/:slugProduct", controller.detail);
+router.get("/:slugCategory",controller.category);
+
 
 //export router 
 module.exports = router;

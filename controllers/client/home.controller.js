@@ -9,8 +9,16 @@ module.exports.index = async (req, res) => {
     };
     const productsFeatured = await Product.find(find);
     const newProductsFeatured = newPriceProduct.newPrice(productsFeatured);
+
+    const productsNew = await Product.find({
+        deleted: false,
+        status: "active"
+    }).sort({position: "desc"}).limit(6);
+    const newProductsNew = newPriceProduct.newPrice(productsNew);
+
     res.render("client/pages/home/index",{
         pageTitle: "Trang chủ",
-        productsFeatured: newProductsFeatured
+        productsFeatured: newProductsFeatured,
+        newProductsNew: newProductsNew
     });
 };
