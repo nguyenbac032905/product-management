@@ -1,0 +1,8 @@
+extends ../../layouts/default.pug
+include ../../mixins/product-layout.pug
+include ../../mixins/alert.pug
+
+block main
+    +alertSuccess(3000)
+    +alertError(3000)
+    div xxx
