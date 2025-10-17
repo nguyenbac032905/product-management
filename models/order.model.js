@@ -12,7 +12,7 @@ const orderSchema = new mongoose.Schema({
             product_id:String,
             price: Number,
             quantity: Number,
-            discoutPercentage: Number
+            discountPercentage: Number
         }
     ],
     deleted:{
