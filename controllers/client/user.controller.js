@@ -29,7 +29,6 @@ module.exports.login = async (req,res) => {
     });
 };
 module.exports.loginPost = async (req,res) =>{
-    console.log(req.body);
     const password = md5(req.body.password);
     const user = await User.findOne({
         email: req.body.email,
@@ -52,4 +51,8 @@ module.exports.loginPost = async (req,res) =>{
     }
     res.cookie("tokenUser",user.tokenUser);
     res.redirect("/");
-}
+};
+module.exports.logout = async (req,res) =>{
+    res.clearCookie("tokenUser");
+    res.redirect("/user/login");
+};
