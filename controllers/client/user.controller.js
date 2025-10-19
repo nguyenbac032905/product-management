@@ -125,3 +125,11 @@ module.exports.resetPasswordPost = async (req,res) =>{
     req.flash("success","đổi mật khẩu thành công");
     res.redirect("/");
 };
+module.exports.infoUser = async (req,res) =>{
+    const user = res.locals.user;
+    
+    res.render("client/pages/user/info-user",{
+        pageTitle: "Trang cá nhân",
+        user: user
+    });
+};

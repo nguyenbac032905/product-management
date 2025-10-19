@@ -1,0 +1,39 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-head.pug
+
+block main
+    h1.mb-4.text-center.text-primary Thông tin cá nhân
+
+    .card.shadow-sm.p-4
+        .text-center.mb-4
+            if user.avatar
+                img(src=user.avatar, width="150", class="rounded-circle mb-3 border")
+            else
+                img(src="/admin/images/avatar.png", width="150", class="rounded-circle mb-3 border")
+            h4.mt-2 #{user.fullName || 'Người dùng'}
+
+        .row
+            .col-md-6.mb-3
+                p.mb-1.text-muted Họ tên:
+                b #{user.fullName || '—'}
+            .col-md-6.mb-3
+                p.mb-1.text-muted Email:
+                b #{user.email || '—'}
+
+            .col-md-6.mb-3
+                p.mb-1.text-muted Số điện thoại:
+                b #{user.phone || '—'}
+            .col-md-6.mb-3
+                p.mb-1.text-muted Trạng thái:
+                b.text-success(class=user.status == "active" ? "text-success" : "text-danger")
+                    #{user.status == "active" ? "Hoạt động" : "Dừng hoạt động"}
+
+            if role && role.title
+                .col-12.mb-3
+                    p.mb-1.text-muted Phân quyền:
+                    b #{role.title}
+
+        .text-center.mt-4
+            a.btn.btn-primary(href="/user/edit")
+                i.bi.bi-pencil-square.me-2
+                | Chỉnh sửa thông tin
