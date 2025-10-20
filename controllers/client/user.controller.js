@@ -3,6 +3,7 @@ const md5 = require("md5");
 const generateHelper = require("../../helpers/generate");
 const sendMailHelper = require("../../helpers/sendMail");
 const ForgotPassword = require("../../models/forgot-password.model");
+const Cart = require("../../models/cart.model");
 module.exports.register = async (req,res) =>{
     res.render("client/pages/user/register",{
         pageTitle: "Đăng ký"
@@ -24,7 +25,7 @@ module.exports.registerPost = async (req,res) =>{
     
     res.cookie("tokenUser",user.tokenUser);
     req.flash('success',"Đăng ký thành công");
-    res.redirect("/");
+    res.redirect("/user/login");
 };
 module.exports.login = async (req,res) => {
     res.render("client/pages/user/login",{
@@ -52,11 +53,22 @@ module.exports.loginPost = async (req,res) =>{
         res.redirect("/user/login");
         return;
     }
+    
+    const cart = await Cart.findOne({
+        user_id: user.id
+    });
+    if(cart){
+        res.cookie("cartId",cart.id);
+    }else{
+        await Cart.updateOne({_id: req.cookies.cartId},{user_id: user.id});
+    }
+
     res.cookie("tokenUser",user.tokenUser);
     res.redirect("/");
 };
 module.exports.logout = async (req,res) =>{
     res.clearCookie("tokenUser");
+    res.clearCookie("cartId");
     res.redirect("/user/login");
 };
 module.exports.forgotPassword = async (req,res) =>{
