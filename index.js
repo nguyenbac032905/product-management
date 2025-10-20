@@ -47,6 +47,11 @@ app.locals.moment =moment;
 
 routeAdmin(app);
 route(app);
+app.use((req,res) =>{
+  res.status(404).render("client/pages/error/404",{
+    pageTitle: "404 Not found"
+  });
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
