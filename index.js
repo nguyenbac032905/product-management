@@ -48,9 +48,7 @@ const { createServer } = require('node:http');
 const { Server } = require('socket.io');
 const server = createServer(app);
 const io = new Server(server);
-io.on('connection', (socket) => {
-  console.log('a user connected');
-});
+global._io = io;
 //end socket Io
 
 routeAdmin(app);
