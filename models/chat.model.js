@@ -4,9 +4,9 @@ const generate = require("../helpers/generate");
 mongoose.plugin(slug);
 const chatSchema = new mongoose.Schema({
     user_id: String,
-    room_chat_id: String,
+    // room_chat_id: String,
     content: String,
-    images: Array,
+    // images: Array,
     deleted: {
         type: Boolean,
         default: false
