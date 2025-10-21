@@ -43,7 +43,15 @@ app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce
 //moment
 const moment = require('moment');
 app.locals.moment =moment;
-
+//socket IO
+const { createServer } = require('node:http');
+const { Server } = require('socket.io');
+const server = createServer(app);
+const io = new Server(server);
+io.on('connection', (socket) => {
+  console.log('a user connected');
+});
+//end socket Io
 
 routeAdmin(app);
 route(app);
@@ -53,6 +61,7 @@ app.use((req,res) =>{
   });
 });
 
-app.listen(port, () => {
+
+server.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

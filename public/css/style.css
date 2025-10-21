@@ -319,3 +319,132 @@ header .inner-menu > ul > li {
   cursor: pointer;
 }
 /* showalear */
+
+/* chat page */
+
+.inner-head {
+  display: flex;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.inner-avatar {
+  background: #6c63ff;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.inner-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: #333;
+}
+
+.inner-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inner-incoming,
+.inner-outgoing {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+}
+
+.inner-incoming {
+  align-self: flex-start;
+}
+
+.inner-outgoing {
+  align-self: flex-end;
+}
+
+.inner-content {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.4;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.inner-incoming .inner-content {
+  background: #f1f1f1;
+  color: #333;
+  border-top-left-radius: 0;
+}
+
+.inner-outgoing .inner-content {
+  background: #6c63ff;
+  color: white;
+  border-top-right-radius: 0;
+}
+
+.inner-foot {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 10px;
+}
+
+.inner-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inner-form input {
+  flex: 1;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.2s;
+}
+
+.inner-form input:focus {
+  border-color: #6c63ff;
+  box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+}
+
+.send-btn {
+  background: #6c63ff;
+  border: none;
+  color: white;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 8px rgba(108, 99, 255, 0.3);
+}
+
+.send-btn:hover {
+  background: #5b53e6;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(108, 99, 255, 0.4);
+}
+
+.send-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 6px rgba(108, 99, 255, 0.4);
+}
+
+.send-btn i {
+  pointer-events: none; /* tránh nhấn trúng icon */
+}
