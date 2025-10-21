@@ -2,12 +2,19 @@ const Chat = require("../../models/chat.model");
 const User = require("../../models/user.model");
 module.exports.index = async (req,res) => {
     const userId = res.locals.user.id;
+    const fullName = res.locals.user.fullName;
     //thay on bằng once để chỉ lắng nghe 1 lần
     _io.once('connection', (socket) => {
         console.log('a user connected',socket.id);
         socket.on("CLIENT_SEND_MESSAGE", async (content) => {
             const chat = new Chat({user_id: userId,content: content});
             await chat.save();
+            //trả về cho client
+            _io.emit("SERVER_RETURN_MESSAGE",{
+                user_id: userId,
+                fullName: fullName,
+                content: content
+            })
         })
     });
 

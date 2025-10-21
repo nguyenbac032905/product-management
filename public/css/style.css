@@ -356,6 +356,8 @@ header .inner-menu > ul > li {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-height: 450px;
+  overflow-y: auto;
 }
 
 .inner-incoming,
