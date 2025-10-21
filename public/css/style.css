@@ -450,3 +450,11 @@ header .inner-menu > ul > li {
 .send-btn i {
   pointer-events: none; /* tránh nhấn trúng icon */
 }
+/* emoji icon */
+.tooltip{
+  visibility: hidden;
+}
+.tooltip.shown{
+  visibility: visible;
+  opacity: 1;
+}
