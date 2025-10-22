@@ -394,7 +394,27 @@ header .inner-menu > ul > li {
   color: white;
   border-top-right-radius: 0;
 }
+/* Khung ảnh trong chat */
+.chat .inner-body .inner-images img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain; /* sửa từ : thành ; */
+  background: #efefef;
+  padding: 10px;
+  margin: 5px 5px 0 0;
+  border-radius: 5px;
+}
 
+/* Chat gửi đi (outgoing) */
+.chat .inner-body.inner-outgoing .inner-images {
+  margin-left: auto;
+  text-align: right;
+}
+
+/* Khoảng cách giữa các ảnh trong outgoing */
+.chat .inner-body .inner-outgoing .inner-images img {
+  margin: 5px 5px;
+}
 .inner-foot {
   border-top: 1px solid #e0e0e0;
   padding-top: 10px;
@@ -506,3 +526,59 @@ header .inner-menu > ul > li {
   }
 }
 /* End box-typing */
+
+/* peview ảnh */
+/* 📦 Khung chứa preview ảnh */
+.preview-wrapper {
+  background: #f8f9fa;          /* nền xám nhạt */
+  border: 1px solid #ddd;       /* viền nhẹ */
+  border-radius: 10px;          /* bo góc mềm */
+  padding: 10px;
+  margin-bottom: 10px;          /* tách khỏi input chat */
+  max-height: 140px;            /* chiều cao tối đa */
+  overflow-y: auto;
+  display: none;           /* có thể cuộn dọc */
+}
+.preview-wrapper.show {
+  display: block;
+}
+
+/* 🔲 Container chứa từng ảnh */
+.preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 🖼️ Mỗi ảnh preview */
+.preview-container .preview-item {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.preview-container img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* ❌ Nút xóa ảnh */
+.preview-container button.remove-btn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  border: none;
+  background: #ff4d4d;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}

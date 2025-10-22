@@ -19,12 +19,28 @@ block main
                                 div(class=(chat.user_id == user.id ? "inner-outgoing" : "inner-incoming"))
                                     if(chat.user_id != user.id)
                                         .inner-name #{chat.infoUser.fullName}
-                                    .inner-content #{chat.content}
+                                    if(chat.content)
+                                        .inner-content #{chat.content}
+                                    if(chat.images)
+                                        .inner-images
+                                            each image in chat.images 
+                                                img(src=image)
                         div.inner-list-typing
                     //- Phần nhập nội dung
                     .inner-foot
+                        //- --- vùng hiển thị preview ---
+                        .preview-wrapper
+                            .preview-container
                         form.inner-form(action="" method="POST")
                             input(type="text" placeholder="Nhập nội dung..." name="content")
+
+                            //- --- khu chọn ảnh ---
+                            div.upload-area
+                                input#imageInput(type="file" multiple accept="image/*" hidden)
+                                button(type="button" class="btn btn-light" id="chooseImagesBtn")
+                                    i.fa-regular.fa-image
+                                    |  Chọn ảnh
+
                             span(class="button-icon btn btn-light mx-2") <i class="fa-regular fa-face-smile"></i>
                             button(type="submit").send-btn
                                 i.fa-solid.fa-paper-plane
