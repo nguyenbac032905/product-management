@@ -127,6 +127,7 @@ socket.on("SERVER_RETURN_MESSAGE",(data) =>{
 
     innerBody.insertBefore(div, listTyping);
     bodyChat.scrollTop = bodyChat.scrollHeight;
+    const gallery = new Viewer(div);
 })
 //tự động scroll xuống dưới cùng khi load trang
 const bodyChat = document.querySelector(".chat .inner-body");
@@ -209,4 +210,9 @@ if(elementListTyping){
 
         }
     })
+}
+// view full image
+const bodyChatPreviewImage = document.querySelector(".chat .inner-body");
+if(bodyChatPreviewImage){
+    const gallery = new Viewer(bodyChatPreviewImage);
 }
