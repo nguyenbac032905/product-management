@@ -20,6 +20,7 @@ block main
                                     if(chat.user_id != user.id)
                                         .inner-name #{chat.infoUser.fullName}
                                     .inner-content #{chat.content}
+                        div.inner-list-typing
                     //- Phần nhập nội dung
                     .inner-foot
                         form.inner-form(action="" method="POST")

@@ -6,6 +6,7 @@ module.exports.index = async (req,res) => {
     //thay on bằng once để chỉ lắng nghe 1 lần
     _io.once('connection', (socket) => {
         console.log('a user connected',socket.id);
+        //message
         socket.on("CLIENT_SEND_MESSAGE", async (content) => {
             const chat = new Chat({user_id: userId,content: content});
             await chat.save();
@@ -14,6 +15,14 @@ module.exports.index = async (req,res) => {
                 user_id: userId,
                 fullName: fullName,
                 content: content
+            })
+        })
+        //typing
+        socket.on("CLIENT_SEND_TYPING",(type) =>{
+            socket.broadcast.emit("SERVER_RETURN_TYPING",{
+                user_id: userId,
+                fullName: fullName,
+                type: type
             })
         })
     });
