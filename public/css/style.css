@@ -582,3 +582,91 @@ header .inner-menu > ul > li {
   justify-content: center;
   line-height: 1;
 }
+
+/* Gói toàn bộ lại để tránh ảnh hưởng Bootstrap */
+.box-user {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.box-user:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.box-user .inner-avatar {
+    flex-shrink: 0;
+    margin-right: 12px;
+}
+
+.box-user .inner-avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.box-user .inner-info {
+    flex: 1;
+}
+
+.box-user .inner-name {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #222;
+    margin-bottom: 6px;
+}
+
+.box-user .inner-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* Style riêng cho nút trong box-user */
+.box-user .inner-buttons button {
+    font-size: 0.9rem;
+    padding: 4px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+/* Không override class .btn của Bootstrap */
+.box-user .inner-buttons .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.box-user .inner-buttons .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.box-user .inner-buttons .btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.box-user .inner-buttons .btn-secondary:hover {
+    background-color: #545b62;
+}
+/* Mặc định: ẩn nút hủy */
+.box-user [btn-cancel-friend] {
+    display: none;
+}
+
+/* Khi có class .add → ẩn nút kết bạn */
+.box-user.add [btn-add-friend] {
+    display: none;
+}
+
+/* Khi có class .add → hiện nút hủy */
+.box-user.add [btn-cancel-friend] {
+    display: inline-block;
+}
