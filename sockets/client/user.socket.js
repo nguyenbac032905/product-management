@@ -1,6 +1,7 @@
 const User = require("../../models/user.model");
 module.exports = (res) =>{
-    _io.once("connection", (socket) =>{
+    _io.on("connection", (socket) =>{
+        //thêm bạn
         socket.on("CLIENT_ADD_FRIEND", async (userId) =>{
             const myId = res.locals.user.id;
 
@@ -15,6 +16,7 @@ module.exports = (res) =>{
                 await User.updateOne({_id: myId},{$push: {requestFriends: userId}});
             }
         })
+        //hủy lời mời
         socket.on("CLIENT_CANCEL_FRIEND", async (userId) =>{
             const myId = res.locals.user.id;
             
@@ -24,9 +26,23 @@ module.exports = (res) =>{
                 await User.updateOne({_id: userId},{$pull: {acceptFriends: myId}});
             }
             //xoa id cua b khoi requestfriend cua a
-            const existRequestUser = await User.findOne({_id: userId, requestFriends: userId});
-            if(existAcceptUser){
+            const existRequestUser = await User.findOne({_id: myId, requestFriends: userId});
+            if(existRequestUser){
                 await User.updateOne({_id: myId},{$pull: {requestFriends: userId}});
+            }
+        })
+        //từ chối kết bạn
+        socket.on("CLIENT_REFUSE_FRIEND", async (userId) =>{
+            const myId = res.locals.user.id;
+            //xoa id cua a khoi acceptfriend cua b
+            const existAcceptUser = await User.findOne({_id: myId, acceptFriends: userId});
+            if(existAcceptUser){
+                await User.updateOne({_id: myId},{$pull: {acceptFriends: userId}});
+            }
+            //xoa id cua b khoi requestfriend cua a
+            const existRequestUser = await User.findOne({_id: userId, requestFriends: myId});
+            if(existRequestUser){
+                await User.updateOne({_id: userId},{$pull: {requestFriends: myId}});
             }
         })
         

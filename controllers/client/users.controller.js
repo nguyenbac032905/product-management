@@ -40,3 +40,20 @@ module.exports.request = async (req,res) =>{
         users: users
     });
 };
+module.exports.accept = async (req,res) =>{
+    const myId = res.locals.user.id;
+    const myUser = await User.findOne({_id: myId});
+    const acceptFriends = myUser.acceptFriends;
+
+    userSocket(res);
+    
+    const users = await User.find({
+        deleted: false,
+        status: "active",
+        _id: {$in: acceptFriends}
+    });
+    res.render("client/pages/users/accept",{
+        pageTitle: "Lời mời kết bạn",
+        users: users
+    });
+};
