@@ -2,7 +2,6 @@ import * as Popper from 'https://cdn.jsdelivr.net/npm/@popperjs/core@^2/dist/esm
 //preview ảnh
 let selectedFiles = [];
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Preview upload initialized");
 
   const chooseBtn = document.getElementById("chooseImagesBtn");
   const inputFile = document.getElementById("imageInput");
@@ -10,15 +9,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const previewWrapper = document.querySelector(".preview-wrapper");
   
   // Mở cửa sổ chọn ảnh
-  chooseBtn.addEventListener("click", () => inputFile.click());
+  if(chooseBtn){
+    chooseBtn.addEventListener("click", () => inputFile.click());
+  }
 
   // Khi chọn ảnh
-  inputFile.addEventListener("change", (e) => {
+  if(inputFile){
+    inputFile.addEventListener("change", (e) => {
     const files = Array.from(e.target.files);
     selectedFiles = selectedFiles.concat(files);
     renderPreview();
     previewWrapper.classList.add("show");
   });
+  }
 
   // Render preview ảnh
   function renderPreview() {
@@ -39,7 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Xóa ảnh
-  previewContainer.addEventListener("click", (e) => {
+  if(previewContainer){
+    previewContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("remove-btn")) {
       const index = e.target.getAttribute("data-index");
       selectedFiles.splice(index, 1);
@@ -49,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
   });
+  }
 });
 //preview ảnh
 //client sent message
