@@ -40,3 +40,17 @@ if(listBtnRefuseFriend){
         })
     })
 }
+//chức năng từ chối kết bạn
+const listBtnAcceptFriend = document.querySelectorAll("[btn-accept-friend]");
+if(listBtnAcceptFriend ){
+    listBtnAcceptFriend .forEach(button => {
+        button.addEventListener("click",() =>{
+            const userId = button.getAttribute("btn-accept-friend");
+            const boxUser = button.closest(".box-user");
+            if(boxUser){
+                boxUser.classList.add("accepted");
+            }
+            socket.emit("CLIENT_ACCEPT_FRIEND",userId);
+        })
+    })
+}

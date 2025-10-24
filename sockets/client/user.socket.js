@@ -1,6 +1,6 @@
 const User = require("../../models/user.model");
 module.exports = (res) =>{
-    _io.on("connection", (socket) =>{
+    _io.once("connection", (socket) =>{
         //thêm bạn
         socket.on("CLIENT_ADD_FRIEND", async (userId) =>{
             const myId = res.locals.user.id;
@@ -43,6 +43,34 @@ module.exports = (res) =>{
             const existRequestUser = await User.findOne({_id: userId, requestFriends: myId});
             if(existRequestUser){
                 await User.updateOne({_id: userId},{$pull: {requestFriends: myId}});
+            }
+        })
+
+        socket.on("CLIENT_ACCEPT_FRIEND", async (userId) =>{
+            const myId = res.locals.user.id;
+            //them a vao friendList cua b
+            //xoa id cua a khoi acceptfriend cua b
+            const existAcceptUser = await User.findOne({_id: myId, acceptFriends: userId});
+            if(existAcceptUser){
+                await User.updateOne({_id: myId},{
+                    $pull: {acceptFriends: userId},
+                    $push: {friendList: {
+                        user_id: myId,
+                        room_chat_id: ""
+                    }}
+                });
+            }
+            //them b vao friendList cua a
+            //xoa id cua b khoi requestfriend cua a
+            const existRequestUser = await User.findOne({_id: userId, requestFriends: myId});
+            if(existRequestUser){
+                await User.updateOne({_id: userId},{
+                    $pull: {requestFriends: myId},
+                    $push: {friendList: {
+                        user_id: userId,
+                        room_chat_id: ""
+                    }}
+                });
             }
         })
         
