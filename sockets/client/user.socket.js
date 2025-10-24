@@ -15,5 +15,20 @@ module.exports = (res) =>{
                 await User.updateOne({_id: myId},{$push: {requestFriends: userId}});
             }
         })
+        socket.on("CLIENT_CANCEL_FRIEND", async (userId) =>{
+            const myId = res.locals.user.id;
+            
+            //xoa id cua a khoi acceptfriend cua b
+            const existAcceptUser = await User.findOne({_id: userId, acceptFriends: myId});
+            if(existAcceptUser){
+                await User.updateOne({_id: userId},{$pull: {acceptFriends: myId}});
+            }
+            //xoa id cua b khoi requestfriend cua a
+            const existRequestUser = await User.findOne({_id: userId, requestFriends: userId});
+            if(existAcceptUser){
+                await User.updateOne({_id: myId},{$pull: {requestFriends: userId}});
+            }
+        })
+        
     })
 };
