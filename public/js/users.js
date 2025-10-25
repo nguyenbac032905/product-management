@@ -40,7 +40,7 @@ if(listBtnRefuseFriend){
         })
     })
 }
-//chức năng từ chối kết bạn
+//chức năng đồng ý kết bạn
 const listBtnAcceptFriend = document.querySelectorAll("[btn-accept-friend]");
 if(listBtnAcceptFriend ){
     listBtnAcceptFriend .forEach(button => {
@@ -52,5 +52,15 @@ if(listBtnAcceptFriend ){
             }
             socket.emit("CLIENT_ACCEPT_FRIEND",userId);
         })
+    })
+}
+//SERVER RETURN ACCEPT FRIEND
+const badgerAccept = document.querySelector("[badge-users-accept]");
+if(badgerAccept){
+    socket.on("SERVER_RETURN_LENGTH_ACCEPT_FRIEND", (data) =>{
+        const idB = badgerAccept.getAttribute("badge-users-accept");
+        if(idB == data.userId){
+            badgerAccept.innerHTML = data.lengthAcceptFriend;
+        }
     })
 }

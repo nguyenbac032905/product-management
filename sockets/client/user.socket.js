@@ -15,6 +15,14 @@ module.exports = (res) =>{
             if(!existRequestUser){
                 await User.updateOne({_id: myId},{$push: {requestFriends: userId}});
             }
+            //lấy ra độ dài acceptFriend của b và trả  về cho b
+            const infoUserB = await User.findOne({_id: userId});
+            const lengthAcceptFriend = infoUserB.acceptFriends.length;
+            
+            socket.broadcast.emit("SERVER_RETURN_LENGTH_ACCEPT_FRIEND",{
+                userId: userId,
+                lengthAcceptFriend: lengthAcceptFriend
+            });
         })
         //hủy lời mời
         socket.on("CLIENT_CANCEL_FRIEND", async (userId) =>{
@@ -30,6 +38,14 @@ module.exports = (res) =>{
             if(existRequestUser){
                 await User.updateOne({_id: myId},{$pull: {requestFriends: userId}});
             }
+            //lấy ra độ dài acceptFriend của b và trả  về cho b
+            const infoUserB = await User.findOne({_id: userId});
+            const lengthAcceptFriend = infoUserB.acceptFriends.length;
+            
+            socket.broadcast.emit("SERVER_RETURN_LENGTH_ACCEPT_FRIEND",{
+                userId: userId,
+                lengthAcceptFriend: lengthAcceptFriend
+            });
         })
         //từ chối kết bạn
         socket.on("CLIENT_REFUSE_FRIEND", async (userId) =>{
