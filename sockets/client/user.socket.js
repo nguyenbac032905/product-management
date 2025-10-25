@@ -4,7 +4,7 @@ module.exports = (res) =>{
         //thêm bạn
         socket.on("CLIENT_ADD_FRIEND", async (userId) =>{
             const myId = res.locals.user.id;
-
+            
             //Id a vao accepfriend cua b
             const existAcceptUser = await User.findOne({_id: userId,acceptFriends: myId});
             if(!existAcceptUser){

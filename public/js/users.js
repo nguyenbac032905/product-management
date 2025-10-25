@@ -72,12 +72,13 @@ if(badgerAccept){
     })
 }
 //SERVER RETURN INFO A
-const rowUserAccept = document.querySelector("[data-users-accept]");
-if(rowUserAccept){
-    socket.on("SERVER_RETURN_INFOUSER_A", (data) =>{
+socket.on("SERVER_RETURN_INFOUSER_A", (data) =>{
+    const rowUserAccept = document.querySelector("[data-users-accept]");
+    //xử lí bên trang accept
+    if(rowUserAccept){
         const idB = rowUserAccept.getAttribute("data-users-accept");
         if(idB == data.userId){
-            //vẽ user ra giao diện
+            //vẽ user ra giao diện accept
             const div = document.createElement("div");
             div.classList.add("col-6");
             div.setAttribute("box-user-id",data.infoUserA._id);
@@ -104,17 +105,33 @@ if(rowUserAccept){
             refuseFriend(buttonRefuse);
             const buttonAccept = document.querySelector("[btn-accept-friend]");
             acceptFriend(buttonAccept);
+            
         }
-    });
-}
+    }
+    //xử lí bên trang notFriend
+    const rowUserNotFriend = document.querySelector("[data-user-not-friend]");
+    if(rowUserNotFriend){
+        //xóa user khỏi giao diện notfriend
+        const boxUserRemove = document.querySelector(`[box-user-not-friend-id="${data.infoUserA._id}"]`);
+        const idB = rowUserNotFriend.getAttribute("data-user-not-friend");
+        if(idB == data.userId){
+            if(boxUserRemove){
+                rowUserNotFriend.removeChild(boxUserRemove);
+            }
+        }
+    }
+});
 //SERVER RETURN ID CANCEL
 socket.on("SERVER_RETURN_USERID_CANCEL", (data) =>{
+    const rowUserAccept = document.querySelector("[data-users-accept]");
     const boxUserRemove = document.querySelector(`[box-user-id="${data.userIdA}"]`);
-    const idB = rowUserAccept.getAttribute("data-users-accept");
-    if(boxUserRemove){
-        const rowUserAccept = document.querySelector("[data-users-accept]");
-        if(idB == data.userIdB){
-            rowUserAccept.removeChild(boxUserRemove);
+    if(rowUserAccept){
+        const idB = rowUserAccept.getAttribute("data-users-accept");
+        if(boxUserRemove){
+            const rowUserAccept = document.querySelector("[data-users-accept]");
+            if(idB == data.userIdB){
+                rowUserAccept.removeChild(boxUserRemove);
+            }
         }
     }
 })

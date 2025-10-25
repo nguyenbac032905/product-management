@@ -702,3 +702,31 @@ header .inner-menu > ul > li {
 .box-user.accepted [btn-accepted-friend] {
     display: inline-block;
 }
+/* boxstatus */
+.inner-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+/* Icon mặc định (offline) */
+.inner-status i {
+  font-size: 10px;
+  color: #bdc3c7; /* xám nhạt */
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Khi online */
+.inner-status.online i {
+  color: #4eff8b; /* xanh sáng */
+  text-shadow: 0 0 6px #4eff8b, 0 0 12px #4eff8b;
+}
+
+/* Khi offline */
+.inner-status.offline i {
+  color: #9e9e9e; /* xám đậm hơn */
+  text-shadow: none;
+}
