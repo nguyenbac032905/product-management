@@ -26,32 +26,39 @@ if(listBtnDeleteRequest){
         })
     })
 }
+
 //chức năng từ chối kết bạn
+const refuseFriend = (button) =>{
+    button.addEventListener("click",() =>{
+        const userId = button.getAttribute("btn-refuse-friend");
+        const boxUser = button.closest(".box-user");
+        if(boxUser){
+            boxUser.classList.add("refuse");
+        }
+        socket.emit("CLIENT_REFUSE_FRIEND",userId);
+    })
+}
 const listBtnRefuseFriend = document.querySelectorAll("[btn-refuse-friend]");
 if(listBtnRefuseFriend){
     listBtnRefuseFriend.forEach(button => {
-        button.addEventListener("click",() =>{
-            const userId = button.getAttribute("btn-refuse-friend");
-            const boxUser = button.closest(".box-user");
-            if(boxUser){
-                boxUser.classList.add("refuse");
-            }
-            socket.emit("CLIENT_REFUSE_FRIEND",userId);
-        })
+        refuseFriend(button);
     })
 }
 //chức năng đồng ý kết bạn
+const acceptFriend = (button) =>{
+    button.addEventListener("click",() =>{
+        const userId = button.getAttribute("btn-accept-friend");
+        const boxUser = button.closest(".box-user");
+        if(boxUser){
+            boxUser.classList.add("accepted");
+        }
+        socket.emit("CLIENT_ACCEPT_FRIEND",userId);
+    })
+}
 const listBtnAcceptFriend = document.querySelectorAll("[btn-accept-friend]");
 if(listBtnAcceptFriend ){
     listBtnAcceptFriend .forEach(button => {
-        button.addEventListener("click",() =>{
-            const userId = button.getAttribute("btn-accept-friend");
-            const boxUser = button.closest(".box-user");
-            if(boxUser){
-                boxUser.classList.add("accepted");
-            }
-            socket.emit("CLIENT_ACCEPT_FRIEND",userId);
-        })
+        acceptFriend(button);
     })
 }
 //SERVER RETURN ACCEPT FRIEND
@@ -63,4 +70,39 @@ if(badgerAccept){
             badgerAccept.innerHTML = data.lengthAcceptFriend;
         }
     })
+}
+//SERVER RETURN INFO A
+const rowUserAccept = document.querySelector("[data-users-accept]");
+if(rowUserAccept){
+    socket.on("SERVER_RETURN_INFOUSER_A", (data) =>{
+        const idB = rowUserAccept.getAttribute("data-users-accept");
+        if(idB == data.userId){
+            //vẽ user ra giao diện
+            const div = document.createElement("div");
+            div.classList.add("col-6");
+            const string =`
+                    <div class="box-user add">
+                        <div class="inner-avatar">
+                            <img src="https://cellphones.com.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg" alt=${data.infoUserA.fullName}>
+                        </div>
+                        <div class="inner-info">
+                            <div class="inner-name">${data.infoUserA.fullName}</div>
+                            <div class="inner-buttons">
+                                <button class="btn btn-sm btn-primary mr-1" btn-accept-friend=${data.infoUserA._id}>Chấp nhận</button>
+                                <button class="btn btn-sm btn-secondary mr-1" btn-refuse-friend=${data.infoUserA._id}>Xóa</button>
+                                <button class="btn btn-sm btn-secondary mr-1" btn-deleted-friend="" disabled="">Đã xóa</button>
+                                <button class="btn btn-sm btn-primary mr-1" btn-accepted-friend="" disabled="">Đã chấp nhận</button>
+                            </div>
+                        </div>
+                    </div>
+                `
+            div.innerHTML = string;
+            rowUserAccept.appendChild(div);
+            //bắt sự kiện cho nút hủy mới
+            const buttonRefuse = document.querySelector("[btn-refuse-friend]");
+            refuseFriend(buttonRefuse);
+            const buttonAccept = document.querySelector("[btn-accept-friend]");
+            acceptFriend(buttonAccept);
+        }
+    });
 }

@@ -15,6 +15,7 @@ module.exports = (res) =>{
             if(!existRequestUser){
                 await User.updateOne({_id: myId},{$push: {requestFriends: userId}});
             }
+
             //lấy ra độ dài acceptFriend của b và trả  về cho b
             const infoUserB = await User.findOne({_id: userId});
             const lengthAcceptFriend = infoUserB.acceptFriends.length;
@@ -22,6 +23,13 @@ module.exports = (res) =>{
             socket.broadcast.emit("SERVER_RETURN_LENGTH_ACCEPT_FRIEND",{
                 userId: userId,
                 lengthAcceptFriend: lengthAcceptFriend
+            });
+
+            //lấy infoUser của a gửi cho b
+            const infoUserA = await User.findOne({_id: myId}).select("fullName avatar");
+            socket.broadcast.emit("SERVER_RETURN_INFOUSER_A",{
+                userId: userId,
+                infoUserA: infoUserA
             });
         })
         //hủy lời mời
@@ -61,7 +69,7 @@ module.exports = (res) =>{
                 await User.updateOne({_id: userId},{$pull: {requestFriends: myId}});
             }
         })
-
+        //đồng ý kết bạn
         socket.on("CLIENT_ACCEPT_FRIEND", async (userId) =>{
             const myId = res.locals.user.id;
             //them a vao friendList cua b
@@ -71,7 +79,7 @@ module.exports = (res) =>{
                 await User.updateOne({_id: myId},{
                     $pull: {acceptFriends: userId},
                     $push: {friendList: {
-                        user_id: myId,
+                        user_id: userId,
                         room_chat_id: ""
                     }}
                 });
@@ -83,7 +91,7 @@ module.exports = (res) =>{
                 await User.updateOne({_id: userId},{
                     $pull: {requestFriends: myId},
                     $push: {friendList: {
-                        user_id: userId,
+                        user_id: myId,
                         room_chat_id: ""
                     }}
                 });
