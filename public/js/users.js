@@ -80,6 +80,7 @@ if(rowUserAccept){
             //vẽ user ra giao diện
             const div = document.createElement("div");
             div.classList.add("col-6");
+            div.setAttribute("box-user-id",data.infoUserA._id);
             const string =`
                     <div class="box-user add">
                         <div class="inner-avatar">
@@ -106,3 +107,14 @@ if(rowUserAccept){
         }
     });
 }
+//SERVER RETURN ID CANCEL
+socket.on("SERVER_RETURN_USERID_CANCEL", (data) =>{
+    const boxUserRemove = document.querySelector(`[box-user-id="${data.userIdA}"]`);
+    const idB = rowUserAccept.getAttribute("data-users-accept");
+    if(boxUserRemove){
+        const rowUserAccept = document.querySelector("[data-users-accept]");
+        if(idB == data.userIdB){
+            rowUserAccept.removeChild(boxUserRemove);
+        }
+    }
+})
