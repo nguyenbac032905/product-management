@@ -1,4 +1,5 @@
 const User = require("../../models/user.model");
+const RoomChat = require("../../models/room-chat.model")
 module.exports = (res) =>{
     _io.once("connection", (socket) =>{
         //thêm bạn
@@ -77,27 +78,48 @@ module.exports = (res) =>{
         //đồng ý kết bạn
         socket.on("CLIENT_ACCEPT_FRIEND", async (userId) =>{
             const myId = res.locals.user.id;
+            //check ton tai
+            const existAcceptUser = await User.findOne({_id: myId, acceptFriends: userId});
+            const existRequestUser = await User.findOne({_id: userId, requestFriends: myId});
+            //check ton tai
+            //tạo phong chat chung
+            let roomChat;
+            if(existAcceptUser && existRequestUser){
+                const dataRoomChat = {
+                    typeRoom: "friend",
+                    users: [
+                        {
+                            user_id: userId,
+                            role: "superAdmin"
+                        },
+                        {
+                            user_id: myId,
+                            role: "superAdmin"
+                        }
+                    ],
+                }
+                roomChat = new RoomChat(dataRoomChat);
+                await roomChat.save();
+            }
             //them a vao friendList cua b
             //xoa id cua a khoi acceptfriend cua b
-            const existAcceptUser = await User.findOne({_id: myId, acceptFriends: userId});
             if(existAcceptUser){
                 await User.updateOne({_id: myId},{
                     $pull: {acceptFriends: userId},
                     $push: {friendList: {
                         user_id: userId,
-                        room_chat_id: ""
+                        room_chat_id: roomChat._id
                     }}
                 });
             }
             //them b vao friendList cua a
             //xoa id cua b khoi requestfriend cua a
-            const existRequestUser = await User.findOne({_id: userId, requestFriends: myId});
             if(existRequestUser){
                 await User.updateOne({_id: userId},{
                     $pull: {requestFriends: myId},
                     $push: {friendList: {
                         user_id: myId,
-                        room_chat_id: ""
+                        room_chat_id: roomChat._id
                     }}
                 });
             }

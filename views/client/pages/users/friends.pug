@@ -19,7 +19,7 @@ block main
                         .inner-info
                             .inner-name #{user.fullName}
                             .inner-buttons
-                                a(class = "btn btn-sm btn-primary mr-1" href="") Nhắn tin
+                                a(href=`/chat/${user.infoFriend.room_chat_id}` class = "btn btn-sm btn-primary mr-1") Nhắn tin
                         div(class=`inner-status ${user.statusOnline=="online" ? "online" : "offline"}` status=user.statusOnline)
                             i.fa-solid.fa-circle
 

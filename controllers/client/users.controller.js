@@ -62,6 +62,7 @@ module.exports.accept = async (req,res) =>{
 module.exports.friends = async (req,res) =>{
     const myId = res.locals.user.id;
     const myUser = await User.findOne({_id: myId});
+    const friendList = myUser.friendList;
     const idsFriendList = myUser.friendList.map(item => item.user_id);
 
     userSocket(res);
@@ -71,7 +72,11 @@ module.exports.friends = async (req,res) =>{
         status: "active",
         _id: {$in: idsFriendList}
     }).select("avatar fullName statusOnline");
-    
+
+    for(const user of users){
+        const indexFriendList =  friendList.findIndex(friend => friend.user_id == user.id);
+        user.infoFriend = friendList[indexFriendList];
+    }
     res.render("client/pages/users/friends",{
         pageTitle: "Danh sách bạn bè",
         users: users
