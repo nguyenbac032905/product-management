@@ -12,10 +12,11 @@ block main
                 a(href="/rooms-chat/create" class="btn btn-sm btn-success mr-1") Tạo phòng chat
 
         .col-6
-            .box-room
-                .inner-avatar
-                    img(src="https://robohash.org/hicveldicta.png" alt="Phòng abc")
-                .inner-info
-                    .inner-name Phòng abc
-                    .inner-buttons
-                        a(href="#" class="btn btn-sm btn-primary mr-1") Nhắn tin
+            each roomChat in roomsChat
+                .box-room
+                    .inner-avatar
+                        img(src=(roomChat.avatar? roomChat.avatar : "https://robohash.org/hicveldicta.png") alt=roomChat.title)
+                    .inner-info
+                        .inner-name #{roomChat.title}
+                        .inner-buttons
+                            a(href=`/chat/${roomChat.id}` class="btn btn-sm btn-primary mr-1") Nhắn tin
