@@ -66,11 +66,23 @@ module.exports.loginPost = async (req,res) =>{
     res.cookie("tokenUser",user.tokenUser);
 
     await User.updateOne({tokenUser: user.tokenUser},{statusOnline: "online"});
+    _io.once("connection",(socket) =>{
+        socket.broadcast.emit("SERVER_RETURN_STATUS",{
+            userId: user.id,
+            status: "online"
+        });
+    });
 
     res.redirect("/");
 };
 module.exports.logout = async (req,res) =>{
     await User.updateOne({tokenUser: req.cookies.tokenUser},{statusOnline: "offline"});
+    _io.once("connection",(socket) =>{
+        socket.broadcast.emit("SERVER_RETURN_STATUS",{
+            userId: res.locals.user.id,
+            status: "offline"
+        });
+    });
     res.clearCookie("tokenUser");
     res.clearCookie("cartId");
     res.redirect("/user/login");

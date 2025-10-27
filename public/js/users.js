@@ -135,3 +135,16 @@ socket.on("SERVER_RETURN_USERID_CANCEL", (data) =>{
         }
     }
 })
+//SERVER RETURN ONLINE
+const rowFriend = document.querySelector("[data-user-friend]");
+if(rowFriend){
+    socket.on("SERVER_RETURN_STATUS",(data) =>{
+    const boxUser = rowFriend.querySelector(`[box-user-friend-id="${data.userId}"]`);
+        if(boxUser){
+            const divUser = boxUser.querySelector("[status]");
+            divUser.classList.remove(data.status=="online" ? "offline" : "online" );
+            divUser.classList.add(data.status);
+            divUser.setAttribute("status",data.status);
+        }
+    });
+}

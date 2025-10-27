@@ -7,9 +7,9 @@ block main
         .row
             .col-12
                 +box-head("Danh sách Bạn bè")
-        .row(data-user-not-friend=user.id)
+        .row(data-user-friend=user.id)
             each user in users
-                .col-6(box-user-not-friend-id=user.id)
+                .col-6(box-user-friend-id=user.id)
                     .box-user
                         .inner-avatar
                             img(
