@@ -730,3 +730,82 @@ header .inner-menu > ul > li {
   color: #9e9e9e; /* xám đậm hơn */
   text-shadow: none;
 }
+
+/* Chỉ custom các class riêng, không ảnh hưởng Bootstrap */
+
+/* Khối phòng chat */
+.box-room {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 15px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.box-room:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Avatar phòng */
+.inner-avatar {
+  flex: 0 0 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 15px;
+}
+
+.inner-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Phần thông tin bên phải */
+.inner-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inner-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Khu vực nút bấm */
+.inner-buttons a {
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.inner-buttons a:hover {
+  opacity: 0.85;
+}
+
+/* Responsive nhỏ gọn */
+@media (max-width: 576px) {
+  .box-room {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .inner-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .inner-avatar {
+    margin-bottom: 10px;
+  }
+}
