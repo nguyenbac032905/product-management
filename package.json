@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --inspect index.js",
+    "start": "concurrently \"nodemon index.js\" \"sass --watch public/client/scss/main.scss:public/client/css/main.css\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -31,5 +31,9 @@
     "socket.io": "^4.8.1",
     "streamifier": "^0.1.1",
     "tinymce": "^8.1.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "sass": "^1.93.2"
   }
 }

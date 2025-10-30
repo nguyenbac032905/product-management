@@ -1,7 +1,10 @@
 mixin sub-menu(pathProduct,layoutProductCategory)
-    ul
+    ul.sub-menu
         each item in layoutProductCategory
-            li
-                a(href=`${pathProduct}/${item.slug}`) #{item.title}
+            li.sub-item
+                a(href=`${pathProduct}/${item.slug}`) 
+                    | #{item.title} 
+                    - if(item.children&&item.children.length > 0)
+                        i.fa-solid.fa-chevron-right
                 - if(item.children&&item.children.length > 0)
                     +sub-menu(pathProduct,item.children)

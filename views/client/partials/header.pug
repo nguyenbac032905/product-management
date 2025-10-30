@@ -1,41 +1,64 @@
 include ../mixins/sub-menu.pug
 header.header
-    .container
-        .row.align-items-center
-            .col-3
-                .inner-logo
-                    a(href="/")
-                        img(src=settingGeneral.logo, alt=settingGeneral.websiteName)
-            
-            .col-5
+    .header_top
+        .header_container
+            .header_logo
+                a.header_logo-image(href="/")
+                    img(src=settingGeneral.logo, alt=settingGeneral.websiteName)
+                
+            .header_search
                 form(action="/search", method="GET")
-                    .form-group.d-flex.mb-3
-                        input.form-control(type="text", name="keyword", placeholder="Nhập từ khóa" value=keyword)
-                        button.btn.btn-primary(type="submit") Tìm
+                    .form-group.header_search-group
+                        input(type="text", name="keyword", placeholder="Tìm Kiếm..." value=keyword)
+                        button <i class="fa-solid fa-magnifying-glass"></i>
 
 
-            .col-4
-                .inner-menu
-                ul
-                    li
-                        a(href="/") Trang chủ
-                    li(class = "sub-menu")
-                        - const pathProduct = "/products"
-                        a(href=pathProduct) Sản phẩm
-                        +sub-menu(pathProduct,layoutProductCategory)
-                    li 
-                        a(href="/cart") Giỏ hàng (#{miniCart ? miniCart.totalQuantity : 0})
-                    if(user)
-                        li
-                            a(href="/users/friends") Bạn bè
-                        li
-                            a(href="/rooms-chat") Phòng chat
-                        li
-                            a(href="/user/infoUser") #{user.fullName}
-                        li
-                            a(href="/user/logout") Đăng xuất
-                    else
-                        li 
-                            a(href="/user/register") Đăng ký
-                        li
-                            a(href="/user/login") Đăng nhập
+            .header_nav
+                a(href="/") TRANG CHỦ
+                a(href="/") BLOG
+            .header_miniBar 
+                <i class="fa-solid fa-bars mini-bar"></i>
+            .header_actions
+                .header_cart
+                    a(href="/cart") 
+                        i.fa-solid.fa-cart-shopping
+                        span #{miniCart ? miniCart.totalQuantity : 0}
+                .header_user
+                    ul
+                        if(user)
+                            li
+                                a(href="/user/infoUser") 
+                                    <i class="fa-solid fa-user"></i>
+                                    span #{user.fullName}
+                .header_contact 
+                    ul 
+                        if(user)
+                            li
+                                a(href="/users/friends")
+                                    <i class="fa-solid fa-comment"></i>
+                                    span LIÊN HỆ
+                            //- li
+                            //-     a(href="/rooms-chat") Phòng chat
+
+                .header_auth(class=(user ? "logout" : "login"))
+                    ul
+                        if(user)
+                            li
+                                a(href="/user/logout")
+                                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                    span ĐĂNG XUẤT
+                        else
+                            li
+                                a(href="/user/register") ĐĂNG KÝ
+                                a(href="/user/login") ĐĂNG NHẬP
+    .header_bottom
+        .header_container
+            .header_innerBottom
+                .header_category 
+                    - const pathProduct = "/products"
+                    .header_category-title 
+                        <i class="fa-solid fa-bars"></i>
+                        a(href=pathProduct) DANH MỤC
+                    +sub-menu(pathProduct,layoutProductCategory)
+                    
+            
