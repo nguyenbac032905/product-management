@@ -1,5 +1,6 @@
 const Product = require("../../models/product.model");
 const newPriceProduct = require("../../helpers/product");
+const CategoryProduct = require("../../models/product-category.model");
 //[GET] /
 module.exports.index = async (req, res) => {
     let find = {
@@ -15,10 +16,9 @@ module.exports.index = async (req, res) => {
         status: "active"
     }).sort({position: "desc"}).limit(6);
     const newProductsNew = newPriceProduct.newPrice(productsNew);
-
     res.render("client/pages/home/index",{
         pageTitle: "Trang chủ",
         productsFeatured: newProductsFeatured,
-        newProductsNew: newProductsNew
+        newProductsNew: newProductsNew,
     });
 };

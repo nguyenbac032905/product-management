@@ -6,8 +6,8 @@
     z-index: 999;
     //headertop
     &_top{
-        background: $color-dark-green;
-        padding: 15px 0;
+        background: linear-gradient(180deg, #e45464 0%, #d70018 100%);
+        padding: 20px 0;
     }
 
     &_container {
@@ -173,80 +173,6 @@
     }
     //headertop
 
-    //headerbottom
-    &_bottom{
-        background: #e5fbf1;
-        padding: 5px 0;
-        a{
-            color: $color-dark-green;
-            text-align: center;
-        }
-    }
-    &_category{
-        text-transform: uppercase;
-        &:hover > .sub-menu{
-            display: block;
-        }
-        display: flex;
-        position: relative;
-        &-title{
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            i{
-                font-size: 20px;
-                color: $color-dark-green;
-                margin-right: 2px;
-            }
-        }
-        .sub-menu{
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 10;
-            min-width: 220px;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            display: none;
-            li.sub-item{
-                position: relative;
-                i{
-                    color: black;
-                    font-size: 13px;
-                }
-                a{
-                    display: block;
-                    padding: 9px 10px;
-                    color: #333;
-                    text-align:left;
-                    font-size: 13px;
-                    font-weight: 500;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    &:hover{
-                        background-color: #ff6600;
-                        color: white;
-                        i{
-                            color: white;
-                        }
-                    }
-                }
-                .sub-menu{
-                    position: absolute;
-                    left: 100%;
-                    top: 0;
-                    display: none;
-                }
-                &:hover{
-                    >.sub-menu{
-                        display: block;
-                    }
-                }
-            }
-        }
-    }
-    //headerbottom
     //responsive
     @media (max-width: 1300px) {
         &_container{

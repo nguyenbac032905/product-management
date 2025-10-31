@@ -1,5 +1,17 @@
 extends ../../layouts/default.pug
 include ../../mixins/product-layout.pug
-block main 
-    +product-grid("Sản phẩm Nổi bật", productsFeatured)
-    +product-grid("Sản phẩm Mới", newProductsNew)
+include ../../mixins/category-wrapper.pug
+block main
+    .home
+        .container
+            .home_category
+                +category-wrapper(layoutProductCategory)
+            .home_ads 
+                .home_ads-image 
+                    img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:1200:75/q:90/plain/https://dashboard.cellphones.com.vn/storage/special-b2s-dday3-d.gif")
+            .home_products-sale
+                +product-slide("Flash Deals",newProductsNew)
+            .home_products-featured
+                +product-grid("Sản phẩm Nổi bật", productsFeatured)
+            .home_products-new
+                +product-grid("Sản phẩm Mới", newProductsNew)

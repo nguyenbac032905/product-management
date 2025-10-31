@@ -9,7 +9,7 @@
         align-items: center;
     }
     &_top{
-        background-color: $color-dark-green;
+        background: linear-gradient(180deg, #e45464 0%, #d70018 100%);
         padding: 20px;
         .footer_container{
             display: flex;

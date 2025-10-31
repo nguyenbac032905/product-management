@@ -1,11 +1,17 @@
 include ./box-head.pug
 include ./product-item.pug
 mixin product-grid(title,products)
-    .container.my-3
-        .row
-            .col-12
-                +box-head(title)
-        .row 
+    .product_grid
+        .product_grid-title 
+            +box-head(title)
+        .product_grid-box 
             each item in products
                 +product-item(item)
+mixin product-slide(title,products)
+    .product_wrapper-slider
+        .product-slider-title FLASH DEALS
+        .product-slider
+            each item in products
+                +product-item(item)
+            
                 

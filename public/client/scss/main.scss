@@ -1,4 +1,13 @@
 @use "utils/variables" as *;
+
 @use 'layouts/default';
+
 @use "partials/header";
 @use "partials/footer";
+
+@use "mixins/product-layout.scss";
+@use "mixins/product-item.scss";
+@use "mixins/category-wrapper";
+@use "mixins/box-title";
+
+@use "pages/home";

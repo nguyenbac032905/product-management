@@ -1,4 +1,4 @@
-include ../mixins/sub-menu.pug
+
 header.header
     .header_top
         .header_container
@@ -51,14 +51,5 @@ header.header
                             li
                                 a(href="/user/register") ĐĂNG KÝ
                                 a(href="/user/login") ĐĂNG NHẬP
-    .header_bottom
-        .header_container
-            .header_innerBottom
-                .header_category 
-                    - const pathProduct = "/products"
-                    .header_category-title 
-                        <i class="fa-solid fa-bars"></i>
-                        a(href=pathProduct) DANH MỤC
-                    +sub-menu(pathProduct,layoutProductCategory)
                     
             

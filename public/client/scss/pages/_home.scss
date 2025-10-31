@@ -1,0 +1,21 @@
+@use "../utils/index" as *;
+.home_products-sale{
+    margin: 50px;
+}
+.home_category{
+    margin: 50px 0 20px 0;
+}
+.home_ads{
+    &-image{
+        width: 100%;
+        img{
+            width: 100%;
+        }
+    }
+}
+.home_products-featured{
+    margin: 50px;
+}
+.home_products-new{
+    margin: 50px;
+}

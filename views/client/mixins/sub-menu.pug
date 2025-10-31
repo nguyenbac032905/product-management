@@ -1,10 +1,20 @@
-mixin sub-menu(pathProduct,layoutProductCategory)
-    ul.sub-menu
+mixin sub-menu(pathProduct,layoutProductCategory,level=1)
+    .sub-menu
         each item in layoutProductCategory
-            li.sub-item
-                a(href=`${pathProduct}/${item.slug}`) 
-                    | #{item.title} 
+            .sub-item
+                a(href=`${pathProduct}/${item.slug}`)
+                    if(level==1)
+                        .title 
+                            img(src=item.thumbnail)
+                            span #{item.title}
+                    else 
+                        .images
+                            .item
+                                .title #{item.title}
+                                .image
+                                    img(src=item.thumbnail)
                     - if(item.children&&item.children.length > 0)
                         i.fa-solid.fa-chevron-right
                 - if(item.children&&item.children.length > 0)
-                    +sub-menu(pathProduct,item.children)
+                    - const nextLevel=level+1
+                    +sub-menu(pathProduct,item.children,nextLevel)

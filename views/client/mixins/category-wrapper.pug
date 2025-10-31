@@ -1,0 +1,84 @@
+include ../mixins/sub-menu.pug
+mixin category-wrapper(layoutProductCategory)
+    .category_wrapper
+        .category_wrapper-inner
+            - const pathProduct = "/products"
+            +sub-menu(pathProduct,layoutProductCategory)
+            .category-panel
+                .panel-left
+                    .banner-slider
+                        .banner-image 
+                            img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:90/plain/https://dashboard.cellphones.com.vn/storage/oppo-find-x9-pre-home.png")
+                        .banner-image 
+                            img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:90/plain/https://dashboard.cellphones.com.vn/storage/home-app3-opensale.jpg")
+                        .banner-image 
+                            img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:90/plain/https://dashboard.cellphones.com.vn/storage/huawei-ultimate2-home.png", alt="")
+                        .banner-image 
+                            img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:90/plain/https://dashboard.cellphones.com.vn/storage/Home-tuan-le-bep-gia-dung.jpg", alt="")
+                        .banner-image 
+                            img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:90/plain/https://dashboard.cellphones.com.vn/storage/amazfit-t-rex-3-pro-sliding.png", alt="")
+                        .banner-image 
+                            img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:90/plain/https://dashboard.cellphones.com.vn/storage/nubia-neo-3-4g-home-0925.jpg", alt="")
+                        .banner-image 
+                            img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:90/plain/https://dashboard.cellphones.com.vn/storage/690x300_iPhone_17_Pro_Opensale_v3.png", alt="")
+                        .banner-image 
+                            img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:1036:450/q:90/plain/https://dashboard.cellphones.com.vn/storage/Z7-Sliding-1025.png", alt="")
+                    .banner-images 
+                        a(href="/") 
+                            img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:50/plain/https://dashboard.cellphones.com.vn/storage/Right-S25-FE.png", alt="")
+                        a(href="/") 
+                            img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:50/plain/https://dashboard.cellphones.com.vn/storage/690x300_Rightbanner_iPad_pro_m5.png", alt="")
+                        a(href="/") 
+                            img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:690:300/q:50/plain/https://dashboard.cellphones.com.vn/storage/Camp-laptop-T9_Right-banner-1.png", alt="")
+                    .banner-halloween 
+                        a(href="/")
+                            img(src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/H2_614x212_a1f37bea56.png", alt="")
+                        a(href="/")
+                            img(src="https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/H2_614x212_1_556f539aad.png", alt="")
+                    
+                .panel-right
+                    .box-top
+                        .inner-title
+                            .image 
+                                img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:0/q:50/plain/https://cellphones.com.vn/media/wysiwyg/ant-smile.png", alt="")
+                            p Chào mừng bạn đến với CellphoneS
+                        .inner-desc 
+                            p Nhập hội thành viên Smember để không bỏ lỡ các ưu đãi hấp dẫn.
+                        .inner-auth 
+                            a(href="/user/login") Đăng nhập
+                            span hoặc
+                            a(href="/user/register") Đăng ký
+                            
+                    .box-bottom
+                        .item
+                            .title 
+                                a(href="/") Ưu đãi cho giáo dục
+                            ul 
+                                li 
+                                    a(href="")
+                                        img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:18:18/q:90/plain/https://cellphones.com.vn/media/wysiwyg/icon_student_home_190825.png")
+                                        span Đăng ký <strong>nhận ưu đãi</strong>
+                                li 
+                                    a(href="")
+                                        img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:18:18/q:90/plain/https://cellphones.com.vn/media/wysiwyg/icon_student_home_190825.png")
+                                        span Tựu trường lên cấp <strong>- Máy mới lên đời</strong>
+                                li 
+                                    a(href="") 
+                                        img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:18:18/q:90/plain/https://cellphones.com.vn/media/wysiwyg/icon_student_home_190825.png")
+                                        span Laptop <strong>giảm thêm đến 500k</strong>        
+                        .item
+                            .title 
+                                a(href="/") Thu cũ lên đời giá hời
+                            ul 
+                                li 
+                                    a(href="")
+                                        img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:18:18/q:90/plain/https://cellphones.com.vn/media/wysiwyg/icon_repeat_home_190825.png")
+                                        span iPhone trợ giá <strong> đến 5 triệu</strong> 
+                                li 
+                                    a(href="") 
+                                        img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:18:18/q:90/plain/https://cellphones.com.vn/media/wysiwyg/icon_repeat_home_190825.png")
+                                        span Samsung trợ giá <strong> đến 4 triệu</strong> 
+                                li 
+                                    a(href="") 
+                                        img(src="https://cdn2.cellphones.com.vn/insecure/rs:fill:18:18/q:90/plain/https://cellphones.com.vn/media/wysiwyg/icon_repeat_home_190825.png")
+                                        span Laptop trợ giá <strong> đến 4 triệu</strong> 

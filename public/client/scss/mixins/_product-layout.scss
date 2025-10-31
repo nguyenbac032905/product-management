@@ -1,0 +1,66 @@
+//button prev, next
+.slick-prev,.slick-next {
+    position: absolute;
+    top: 40%;
+    background: black;
+    opacity: 0.3;
+    border: none;
+    width: 30px;
+    height: 40px;
+    z-index: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+        font-size: 20px;
+        color: white;
+    }
+
+}
+
+.slick-prev {
+    left: 0px;
+    border-radius: 0 5px 5px 0;
+}
+
+.slick-next {
+    right: 6px;
+    border-radius: 5px 0 0 5px;
+}
+//layout slide
+.product_wrapper-slider{
+    width: 100%;
+    padding: 10px 15px 15px 19px;
+    background-color: #FF8E4D;
+    border-radius: 10px;
+    .product-slider {
+        position: relative;
+        &-title{
+            color: white;
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+        .product-item{
+            margin-right: 10px;
+        }
+    }
+}
+//layout grid
+.product_grid{
+    &-box{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        .product-item{
+            width: calc(100%/5 - 50px/5);
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    }
+    &-box:nth-child(5n){
+        margin-right: 0;
+    }
+
+}

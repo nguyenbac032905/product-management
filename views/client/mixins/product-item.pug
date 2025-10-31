@@ -1,13 +1,13 @@
 mixin product-item(item)
-    .col-4.mb-3
-        .product-item 
+    .product-item 
+        a(href=`/products/detail/${item.slug}`)
+            span.inner-discount -#{item.discountPercentage}%
+            if(item.featured == "1")
+                .inner-featured Nổi bật
             .inner-image
                 img(src=item.thumbnail, alt=item.title)
-                if(item.featured == "1")
-                    .inner-featured Nổi bật
-            .inner-content
-                a(href=`/products/detail/${item.slug}`)
-                    h3.inner-title #{item.title}
-                .inner-price-new #{item.priceNew}$
-                .inner-price-old #{item.price}$
-                .inner-discount -#{item.discountPercentage}%
+            .inner-info-product
+                .inner-price
+                    .inner-price-new #{item.priceNew}đ
+                    .inner-price-old #{item.price}đ
+                h3.inner-title #{item.title}
