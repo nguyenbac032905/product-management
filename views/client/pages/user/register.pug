@@ -1,48 +1,83 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/box-head.pug
 
 block main
     +alertError(5000)
     +alertSuccess(5000)
 
-    .container.my-5
-        .row.justify-content-center
-            .col-8
-                h1(class="text-center") Đăng ký tài khoản
-
+    .register
+        .register_box
+            .register_box-left
+                .register_box-content 
+                    .register_box-logos
+                        img(src="https://cdn-static.smember.com.vn/_next/static/media/cellphones-long-icon.6a80e2a6.svg", alt="")
+                        img(src="https://cdn-static.smember.com.vn/_next/static/media/dtv-long-icon.40a11e1d.svg", alt="")
+                    .register_box-text Nhập hội khách hàng thành viên <strong style="color:#d70018;">SMEMBER</strong>
+                    .register_box-text Để không bỏ lỡ các ưu đãi hấp dẫn từ CellphoneS
+                .register_box-card 
+                    div( class="cornor bottom-left")
+                    div( class="cornor bottom-right")
+                    div( class="cornor top-left")
+                    div( class="cornor top-right")
+                    .register_box-list
+                        ul 
+                            li 
+                                i.fa-solid.fa-gift
+                                div <strong>Chiết khấu đến 5%</strong> khi mua các sản phẩm mua tại CellphoneS
+                            li 
+                                i.fa-solid.fa-gift
+                                div <strong>Miễn phí giao hàng</strong> cho thành viên SMEM, SVIP và cho đơn hàng từ 300.000đ
+                            li 
+                                i.fa-solid.fa-gift
+                                div <strong>Tặng voucher sinh nhật đến 500.000đ</strong> cho khách hàng thành viên
+                            li 
+                                i.fa-solid.fa-gift
+                                div Trợ giá thu cũ lên đời <strong>đến 1 triệu</strong>
+                            li 
+                                i.fa-solid.fa-gift
+                                div Thăng hạng nhận voucher <strong>đến 300.000đ</strong>
+                            li 
+                                i.fa-solid.fa-gift
+                                div Đặc quyền S-Student/S-Teacher <strong>ưu đãi thêm đến 10%</strong>
+                        a(href="/") Xem chi tiết chính sách ưu đãi Smember
+            .register_box-right
+                +box-head("Đăng Ký SMEMBER")
                 form(action="/user/register" method="POST")
-                    .form-group
-                        label(for="fullName") Họ và tên
+                    .form-group.register_box-item
+                        div.type Fullname:
                         input(
-                        type="text"
-                        class="form-control"
-                        id="fullName"
-                        name="fullName"
-                        required
-                    )
+                            type="text"
+                            name="fullName"
+                            required
+                            placeHolder="Nhập tên của bạn..."
+                        )
 
-                    .form-group
-                        label(for="email") Email
+                    .form-group.register_box-item
+                        div.type Email:
                         input(
-                        type="email"
-                        class="form-control"
-                        id="email"
-                        name="email"
-                        required
-                    )
+                            type="email"
+                            name="email"
+                            placeHolder="Nhập Email của bạn..."
+                            required
+                        )
 
-                    .form-group
-                        label(for="password") Mật khẩu
+                    .form-group.register_box-item
+                        div.type Password:
                         input(
-                        type="password"
-                        class="form-control"
-                        id="password"
-                        name="password"
-                        required
-                    )
+                            type="password"
+                            name="password"
+                            required
+                            placeHolder="Nhập mật khẩu của bạn..."
+                        )
 
-                    .form-group
+                    .form-group.register_box-button
                         button(
                             type="submit"
                             class="btn btn-primary btn-block"
                         ) Đăng ký
+                .register_box-forgot 
+                    a(href="/user/password/forgot") Quên mật khẩu?
+                .register_box-register
+                    span Bạn đã có tài khoản ?
+                    a(href="/user/register") Đăng nhập ngay

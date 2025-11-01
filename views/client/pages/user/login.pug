@@ -1,38 +1,73 @@
 extends ../../layouts/default.pug
 include ../../mixins/alert.pug
+include ../../mixins/box-head.pug
 block main
-  +alertError(5000)
+    +alertError(5000)
 
-  .container.my-5
-    .row.justify-content-center
-      .col-8
-        h1(class="text-center") Đăng nhập tài khoản
+    .login 
+        .login_box
+            .login_box-left
+                .login_box-content 
+                    .login_box-logos
+                        img(src="https://cdn-static.smember.com.vn/_next/static/media/cellphones-long-icon.6a80e2a6.svg", alt="")
+                        img(src="https://cdn-static.smember.com.vn/_next/static/media/dtv-long-icon.40a11e1d.svg", alt="")
+                    .login_box-text Nhập hội khách hàng thành viên <strong style="color:#d70018;">SMEMBER</strong>
+                    .login_box-text Để không bỏ lỡ các ưu đãi hấp dẫn từ CellphoneS
+                .login_box-card 
+                    div( class="cornor bottom-left")
+                    div( class="cornor bottom-right")
+                    div( class="cornor top-left")
+                    div( class="cornor top-right")
+                    .login_box-list
+                        ul 
+                            li 
+                                i.fa-solid.fa-gift
+                                div <strong>Chiết khấu đến 5%</strong> khi mua các sản phẩm mua tại CellphoneS
+                            li 
+                                i.fa-solid.fa-gift
+                                div <strong>Miễn phí giao hàng</strong> cho thành viên SMEM, SVIP và cho đơn hàng từ 300.000đ
+                            li 
+                                i.fa-solid.fa-gift
+                                div <strong>Tặng voucher sinh nhật đến 500.000đ</strong> cho khách hàng thành viên
+                            li 
+                                i.fa-solid.fa-gift
+                                div Trợ giá thu cũ lên đời <strong>đến 1 triệu</strong>
+                            li 
+                                i.fa-solid.fa-gift
+                                div Thăng hạng nhận voucher <strong>đến 300.000đ</strong>
+                            li 
+                                i.fa-solid.fa-gift
+                                div Đặc quyền S-Student/S-Teacher <strong>ưu đãi thêm đến 10%</strong>
+                        a(href="/") Xem chi tiết chính sách ưu đãi Smember
+            .login_box-right
+                +box-head("Đăng nhập SMEMBER")
+                form(action="/user/login" method="POST")
+                    .form-group.login_box-item
+                        div.type Email:
+                        input(
+                            type="email"
+                            name="email"
+                            required
+                            placeHolder="Nhập Email của bạn..."
+                        )
 
-        form(action="/user/login" method="POST")
-            .form-group
-                label(for="email") Email
-                input(
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                required
-                )
+                    .form-group.login_box-item
+                        div.type Mật khẩu:
+                        input(
+                            type="password"
+                            name="password"
+                            required
+                            placeHolder="Nhập mật khẩu của bạn..."
+                        )
 
-            .form-group
-                label(for="password") Mật khẩu
-                input(
-                type="password"
-                class="form-control"
-                id="password"
-                name="password"
-                required
-                )
+                    .form-group.login_box-button
+                        button(
+                            type="submit"
+                            class="btn btn-red"
+                        ) Đăng nhập
 
-            .form-group
-                button(
-                type="submit"
-                class="btn btn-primary btn-block"
-                ) Đăng nhập
-
-        a(href="/user/password/forgot") Quên mật khẩu
+                .login_box-forgot 
+                    a(href="/user/password/forgot") Quên mật khẩu?
+                .login_box-register
+                    span Bạn chưa có tài khoản ?
+                    a(href="/user/register") Đăng ký ngay
