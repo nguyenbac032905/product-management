@@ -915,4 +915,127 @@ ul {
   }
 }
 
+.cart {
+  margin: 50px 0;
+}
+.cart_title {
+  padding: 10px 20px;
+  font-size: 18px;
+}
+.cart_title span {
+  color: #cccccc;
+}
+.cart_box {
+  display: flex;
+  gap: 30px;
+}
+.cart_left {
+  flex: 7 1 0;
+}
+.cart_left table {
+  width: 100%;
+}
+.cart_left table .cart_left-info {
+  width: 50%;
+}
+.cart_left table th, .cart_left table td {
+  padding: 12px 16px;
+}
+.cart_left table .title {
+  background-color: rgb(247, 247, 247);
+}
+.cart_left table .cart_left-product {
+  border-bottom: 0.5px solid #e5e7eb;
+}
+.cart_left table .cart_left-info a {
+  display: flex;
+  align-items: center;
+}
+.cart_left table .cart_left-info a img {
+  margin-right: 10px;
+}
+.cart_left table .cart_left-info a p {
+  color: #333;
+}
+.cart_left table .cart_left-text {
+  text-align: center;
+  color: #333;
+}
+.cart_left table .cart_left-text .cart_left-pricenew {
+  font-weight: 500;
+}
+.cart_left table .cart_left-text .cart_left-priceold {
+  text-decoration: line-through;
+}
+.cart_left table .cart_left-btn {
+  position: relative;
+}
+.cart_left table .cart_left-btn a {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.cart_left table .cart_left-btn a i {
+  font-size: 16px;
+  color: #ccc;
+  transition: all 0.2s ease-in-out;
+}
+.cart_left table .cart_left-btn a:hover i {
+  font-size: 18px;
+  color: #d70018;
+}
+.cart_right {
+  flex: 3 1 0;
+  padding: 40px 0;
+}
+.cart_right-title {
+  padding: 13px 10px;
+  border-top: 3px solid #d70018;
+  border-bottom: 1px solid rgb(241, 241, 245);
+  font-size: 17px;
+  font-weight: 700;
+}
+.cart_right-provisional {
+  padding: 15px 10px;
+  border-bottom: 1px solid rgb(241, 241, 245);
+}
+.cart_right-provisional div {
+  display: flex;
+  justify-content: space-between;
+}
+.cart_right-provisional div span {
+  font-weight: 700;
+}
+.cart_right-total {
+  padding: 15px 10px;
+  border-bottom: 1px solid rgb(241, 241, 245);
+}
+.cart_right-total div {
+  display: flex;
+  justify-content: space-between;
+}
+.cart_right-total div span {
+  font-weight: 700;
+  color: #d70018;
+}
+.cart_right-total .cart_right-vat {
+  color: #ccc;
+}
+.cart_right-button {
+  margin-top: 30px;
+}
+.cart_right-button a {
+  display: block;
+  padding: 10px 20px;
+  background-color: #d70018;
+  text-align: center;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: all 0.5s ease-in-out;
+}
+.cart_right-button a:hover {
+  background-color: #901;
+}
+
 /*# sourceMappingURL=main.css.map */
