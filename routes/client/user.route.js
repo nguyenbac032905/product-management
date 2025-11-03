@@ -4,6 +4,11 @@ const controller = require("../../controllers/client/user.controller");
 const validate = require("../../validates/client/user.validate");
 const authenMiddleware = require("../../middlewares/client/auth.middleware");
 
+//nhúng middleware upload cloud
+const multer = require("multer");
+const upload = multer();
+const uploadCloud = require("../../middlewares/client/uploadCloud.middleware");
+
 router.get("/register", controller.register);
 router.post("/register",validate.registerPost,controller.registerPost);
 router.get("/login",controller.login);
@@ -16,5 +21,6 @@ router.post("/password/otp",controller.otpPasswordPost);
 router.get("/password/reset",controller.resetPassword);
 router.post("/password/reset",validate.resetPasswordPost,controller.resetPasswordPost);
 router.get("/infoUser",authenMiddleware.requireAuth,controller.infoUser);
+router.patch("/infoUser/edit",upload.single('avatar'),uploadCloud.upload,authenMiddleware.requireAuth,controller.infoUserEditPatch);
 
 module.exports = router;

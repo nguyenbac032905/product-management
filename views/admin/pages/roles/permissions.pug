@@ -30,6 +30,7 @@ block main
                     //- danh mục sp
                     -   const permission = ["view-Xem","create-Thêm mới","edit-Chỉnh sửa","delete-Xóa"]
                     -   const permissionManage =  [...permission,"permission-Phân quyền"]
+                    -   const customerManage = [...permission, "message-Nhắn tin"]
                     +rowPermission(records,"Danh mục sản phẩm","products-category",permission)
                     //- sản phẩm
                     +rowPermission(records,"Sản phẩm","products",permission)
@@ -37,6 +38,7 @@ block main
                     +rowPermission(records,"Nhóm quyền","roles",permissionManage)
                     //-phân quyền
                     +rowPermission(records,"Tài Khoản","accounts",permission)
+                    +rowPermission(records,"Khách hàng","customers",customerManage)
                     
         form(
             id="form-change-permissions"
@@ -51,4 +53,5 @@ block main
                 name="permissions"
                 )
         script(src="/admin/js/roles.js")
-    div bạn không có quyền phân quyền
+    else
+        div bạn không có quyền phân quyền

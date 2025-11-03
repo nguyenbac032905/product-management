@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"nodemon index.js\" \"sass --watch public/client/scss/main.scss:public/client/css/main.css\"",
+    "start": "concurrently \"nodemon index.js\" \"sass --watch public/client/scss/main.scss:public/client/css/main.css\" \"sass --watch public/admin/scss/main.scss:public/admin/css/main.css\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -21,12 +21,13 @@ module.exports.editPatch = async (req,res) =>{
         });
         if(emailExist){
             req.flash("error","email đã tồn tại");
+            res.redirect(res.get("Referer") || `${systemConfig.prefixAdmin}/my-account/edit`);
+            return;
+        }
+        if(req.body.passwrord){
+            req.body.password = md5(req.body.password);
         }else{
-            if(req.body.passwrord){
-                req.body.password = md5(req.body.password);
-            }else{
-                delete req.body.password;
-            }
+            delete req.body.password;
         }
         await Account.updateOne({_id: id}, req.body);
         req.flash('success',"cập nhật thành công");

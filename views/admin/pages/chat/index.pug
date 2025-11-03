@@ -2,7 +2,7 @@ extends ../../layouts/default.pug
 
 block main
     .customer-chat
-        .container
+        .container.my-3
             .row
                 .col-12
                     .chat(my-id=user.id)
@@ -26,7 +26,7 @@ block main
                                                         img(src=image)
                                         if(chat.infoAdmin)
                                             if(chat.user_id != user.id)
-                                                .inner-name Admin #{chat.infoAdmin.fullName}
+                                                .inner-name Admin_#{chat.infoAdmin.fullName}
                                             if(chat.content)
                                                 .inner-content #{chat.content}
                                             if(chat.images)
@@ -55,4 +55,4 @@ block main
         div(class="tooltip" role="tooltip")                            
             emoji-picker
 block script 
-    script(type="module" src="/js/chat.js")
+    script(type="module" src="/admin/js/chat.js")

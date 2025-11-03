@@ -54,9 +54,9 @@
         width: 100%;
         flex-wrap: wrap;
         .product-item{
-            width: calc(100%/5 - 50px/5);
-            margin-right: 10px;
-            margin-bottom: 10px;
+            width: calc(100%/5 - 100px/5);
+            margin-right: 20px;
+            margin-bottom: 20px;
         }
     }
     &-box:nth-child(5n){

@@ -11,12 +11,14 @@ html
         link(rel="stylesheet" href="/css/style.css")
         link(rel="stylesheet" href="/client/css/main.css")
     body
-        include ../partials/header.pug
-        block main
-        include ../partials/footer.pug
-
+        .layout
+            include ../partials/header.pug
+            main.main 
+                block main
+            include ../partials/footer.pug
+        //-xem ảnh
         script(src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.7/viewer.min.js" integrity="sha512-lZD0JiwhtP4UkFD1mc96NiTZ14L7MjyX5Khk8PMxJszXMLvu7kjq1sp4bb0tcL6MY+/4sIuiUxubOqoueHrW4w==" crossorigin="anonymous" referrerpolicy="no-referrer")
-
+        //-socket
         script(src="/socket.io/socket.io.js")
         script(src="/js/socket.js")
 

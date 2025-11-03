@@ -167,3 +167,146 @@
         }
     }
 }
+//infoUser
+.user{
+    margin: 50px 0;
+    &_box{
+        display: flex;
+        gap: 30px;
+        &-left{
+            flex: 3 1 0;
+            padding: 20px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 10px;
+        }
+        &-info{
+            display: flex;
+            margin-bottom: 20px;
+            align-items: center;
+            margin-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        &-avatar{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 12px;
+            border: 2px solid #eee;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            }
+        }
+        &-fullname{
+            flex: 1;
+            h4{
+                margin: 0;
+                padding: 0;
+                margin-bottom: 15px;
+            }
+            span{
+                padding: 5px;
+                color: white;
+                border-radius: 8px;
+                &.active{
+                    background-color: rgba(22, 163, 74, 0.1);
+                    color: #16a34a;
+                    border: 1px solid #16a34a;
+                }
+                &.inactive{
+                    background-color: rgba(220, 38, 38, 0.1);
+                    color: #dc2626;
+                    border: 1px solid #dc2626;
+                }
+            }
+        }
+        &-edit{
+            span{
+                display: block;
+                width: 100%;
+                padding: 10px 20px;
+                border-radius: 10px;
+                background-color: #16a34a;
+                color: white;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+                text-align: center;
+                font-weight: 500;
+                &:hover {
+                    background-color: #15803d; // xanh đậm hơn
+                    box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3);
+                    transform: translateY(-1px); // nhấc nhẹ lên
+                }
+            }
+        }
+        &-right{
+            flex: 7 1 0;
+            padding: 20px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 10px;
+        }
+        &-text{
+            margin-bottom: 30px;
+            label{
+                margin-bottom: 10px;
+                color: #333;
+                font-weight: 500;
+                display: block;
+            }
+            input{
+                width: 100%;
+                padding: 10px 20px;
+                border-radius: 10px;
+                border: 1px solid #ccc;
+                background-color: white;
+                outline: none;
+                &:focus{
+                    background-color: white;
+                    border: 1px solid #333;
+                }
+                &:disabled{
+                    background-color: #d1d5db98;
+                    color: #374151;
+                }
+                &.upload-image-input{
+                    border: none;
+                }
+            }
+        }
+        &-button{
+            text-align: center;
+            &.show{
+                display: block;
+            }
+            &.hidden{
+                display: none;
+            }
+            button{
+                padding: 10px 30px;
+                border-radius: 10px;
+                background-color: #3b82f6;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                transition: all 0.25s ease-in-out;
+                text-align: center;
+                font-weight: 600;
+                &:hover {
+                    background-color: #2563eb;
+                    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+                    transform: translateY(-2px);
+                }
+            }
+        }
+    }
+}

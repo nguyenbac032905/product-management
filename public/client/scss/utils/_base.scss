@@ -1,16 +1,19 @@
-a{
+a {
     text-decoration: none !important;
 }
-ul{
+
+ul {
     list-style-type: none;
     margin-bottom: 0;
     padding-left: 0;
 }
-.container{
+
+.container {
     max-width: 1300px;
     width: 100%;
     margin: 0 auto;
     align-items: center;
+
     @media (max-width: 1199.98px) {
         max-width: 1140px;
         padding: 0 15px;
@@ -34,3 +37,37 @@ ul{
         padding: 0 10px;
     }
 }
+
+/* Image Preview */
+.upload-image {
+    margin-top: 10px;
+
+    .upload-image-input {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .image-preview {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 5px;
+        background-color: #f9f9f9;
+        display: none; // mặc định ẩn
+    }
+
+    .button-delete-image {
+        margin-top: 8px;
+        background-color: #ef4444;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+}
+
+/* End Image Preview */

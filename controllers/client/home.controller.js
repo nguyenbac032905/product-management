@@ -1,6 +1,7 @@
 const Product = require("../../models/product.model");
 const newPriceProduct = require("../../helpers/product");
-const CategoryProduct = require("../../models/product-category.model");
+const ProductCategory = require("../../models/product-category.model");
+const createTreeHelper = require("../../helpers/createTree");
 //[GET] /
 module.exports.index = async (req, res) => {
     let find = {
@@ -16,9 +17,13 @@ module.exports.index = async (req, res) => {
         status: "active"
     }).sort({position: "desc"}).limit(6);
     const newProductsNew = newPriceProduct.newPrice(productsNew);
+    //lấy ra category
+    const productCategory = await ProductCategory.find({deleted: false}).lean();
+    const newProductCategory = createTreeHelper.tree(productCategory);
     res.render("client/pages/home/index",{
         pageTitle: "Trang chủ",
         productsFeatured: newProductsFeatured,
         newProductsNew: newProductsNew,
+        layoutProductCategory: newProductCategory
     });
 };

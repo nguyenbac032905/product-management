@@ -4,6 +4,9 @@ const generateHelper = require("../../helpers/generate");
 const sendMailHelper = require("../../helpers/sendMail");
 const ForgotPassword = require("../../models/forgot-password.model");
 const Cart = require("../../models/cart.model");
+const Account = require("../../models/account.model");
+const Role = require("../../models/role.modle");
+const RoomChat = require("../../models/room-chat.model");
 module.exports.register = async (req,res) =>{
     res.render("client/pages/user/register",{
         pageTitle: "Đăng ký"
@@ -22,7 +25,35 @@ module.exports.registerPost = async (req,res) =>{
     req.body.password = md5(req.body.password);
     const user = new User(req.body);
     await user.save();
-    
+    //lấy ra admins có quyền nhắn tin:
+    const role = ["Quản lý Khách Hàng","Quản trị viên"];
+    const roleInfo = await Role.find({title: {$in: role}});
+    const roleIds = roleInfo.map(item => item._id);  
+
+    const adminInfo = await Account.find({role_id: {$in: roleIds}});
+    const adminIds = adminInfo.map(item => item._id);
+
+    //tạo ra roomchat khi register
+    let dataRoom = {
+        title: "Chăm Sóc Khách Hàng",
+        typeRoom: "group",
+        users: []
+    }
+    for(const adminId of adminIds){
+        dataRoom.users.push(
+            {
+                user_id: adminId,
+                role: "superAdmin"
+            }
+        );
+    }
+    dataRoom.users.push({
+        user_id: user.id,
+        role: "user"
+    });
+    const roomChat = new RoomChat(dataRoom);
+    await roomChat.save();
+
     res.cookie("tokenUser",user.tokenUser);
     req.flash('success',"Đăng ký thành công");
     res.redirect("/user/login");
@@ -160,4 +191,30 @@ module.exports.infoUser = async (req,res) =>{
         pageTitle: "Trang cá nhân",
         user: user
     });
+};
+module.exports.infoUserEditPatch = async (req,res) =>{
+    try {
+        const userId = res.locals.user.id;
+        const existEmail = await User.findOne({
+            _id: {$ne: userId},
+            email: req.body.email,
+            deleted: false
+        });
+        console.log(existEmail);
+        if(existEmail){
+            req.flash("error","email đã tồn tại");
+            res.redirect("/user/infoUser");
+            return
+        }
+        if(req.body.password == ""){
+            delete req.body.password;
+        }else{
+            req.body.password = md5(req.body.password);
+        }
+        await User.updateOne({_id: userId},req.body);
+        req.flash('success',"cập nhật thành công");
+    } catch (error) {
+        req.flash('success',"cập nhật thất bại");
+    }
+    res.redirect("/user/infoUser");
 };

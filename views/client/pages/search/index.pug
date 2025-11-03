@@ -3,7 +3,12 @@ include ../../mixins/box-head.pug
 include ../../mixins/product-layout.pug
 
 block main
-    if(products.length > 0)
-        +product-grid("Kết quả tìm kiếm",products)
-    else 
-        h1.text-center không tìm thấy sản phẩm nào
+    .product-search
+        .container
+            .product-search_result
+                if(products.length > 0)
+                    .product-search_box
+                        +product-grid("Kết quả tìm kiếm",products)
+                else 
+                    .product-search_none
+                        +box-head("Không tìm thấy sản phẩm nào")

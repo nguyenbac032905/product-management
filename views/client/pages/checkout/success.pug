@@ -1,60 +1,61 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 block main 
-    +box-head('Đặt hàng thành công')
-    .row
-        .col-12
-            div(class="alert alert-success") Chúc mừng bạn đã đặt hàng thành công! Chúng tôi sẽ xử lý đơn hàng trong thời gian sớm nhất.
+    .order
+        .container
+            .order_title
+                div(class="alert alert-success") Chúc mừng bạn đã đặt hàng thành công! Chúng tôi sẽ xử lý đơn hàng trong thời gian sớm nhất.
 
-        if order
-            .col-12
-                h4(class="mb-2") Thông tin cá nhân
-                table(class="table table-bordered")
-                    tbody
-                        tr
-                            td Họ tên
-                            td 
-                                b= order.userInfo.fullName
-                        tr
-                            td Số điện thoại
-                            td 
-                                b= order.userInfo.phone
-                        tr
-                            td Địa chỉ
-                            td 
-                                b= order.userInfo.address
-    
-    .row
-        .col-12
-            h4(class="mb-2") Thông tin đơn hàng
-            table(class="table table-bordered")
-                thead
-                    tr
-                    th STT
-                    th Ảnh
-                    th Tên
-                    th Giá
-                    th Số lượng
-                    th Tổng tiền
-                tbody
-                    if order.products.length > 0
-                        each item, index in order.products
-                            tr
-                                td #{index + 1}
-                                td
-                                    img(
-                                        src=item.productInfo.thumbnail
-                                        alt=item.productInfo.title
-                                        width="80px"
-                                    )
-                                td #{item.productInfo.title}
-                                td #{item.price + " $"}
-                                td #{item.quantity}
-                                td #{item.totalPrice + " $"}
-                        else
-                            tr
-                                td(colspan="6" class="text-center text-muted") Không có sản phẩm nào trong đơn hàng
-    
-    if order.products.length > 0
-        h3(class="text-right") Tổng đơn hàng: #{order.orderTotalPrice} $
+            if order
+                .order_user
+                    .order_user-title
+                        h4 Thông tin cá nhân
+                    .order_user-info
+                        table
+                            tbody
+                                tr
+                                    td Họ tên:
+                                    td 
+                                        b #{order.userInfo.fullName}
+                                tr
+                                    td Số điện thoại:
+                                    td 
+                                        b #{order.userInfo.phone}
+                                tr
+                                    td Địa chỉ:
+                                    td 
+                                        b #{order.userInfo.address}
+        
+            .order_product
+                .order_product-title
+                    h4(class="mb-2") Thông tin đơn hàng
+                .order_product-table
+                    table
+                        thead
+                            tr.title
+                                th Sản Phẩm
+                                th Giá tiền
+                                th Số lượng
+                                th Thành tiền
+                        tbody
+                            if(order.products.length > 0)
+                                each item in order.products 
+                                    tr.order_left-product
+                                        td.order_left-info
+                                            a
+                                                img(src=item.productInfo.thumbnail, alt=item.productInfo.title, width="80px")
+                                                p #{item.productInfo.title}
+                                        td.order_left-text
+                                            .order_left-price 
+                                                .order_left-pricenew #{item.newPrice} đ
+                                                .order_left-priceold #{item.price} đ
+                                        td.order_left-text
+                                            .order_left-quantity #{item.quantity}
+                                        td.order_left-text
+                                            .order_left-sum #{item.quantity*item.newPrice} đ
+            
+            if order.products.length > 0
+                .order_total
+                    h3 Tổng đơn hàng: 
+                        span #{order.orderTotalPrice} đ
 

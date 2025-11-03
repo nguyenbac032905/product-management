@@ -1,7 +1,7 @@
 const Chat = require("../../models/chat.model");
-const User = require("../../models/user.model");
-const chatSocket = require("../../sockets/client/chat.socket");
 const Account = require("../../models/account.model");
+const User = require("../../models/user.model");
+const chatSocket = require("../../sockets/admin/chat.socket");
 module.exports.index = async (req,res) => {
     const roomChatId = req.params.roomChatId;
     chatSocket(req,res);
@@ -13,7 +13,7 @@ module.exports.index = async (req,res) => {
         const infoAdmin = await Account.findOne({_id: chat.user_id}).select("fullName avatar");
         chat.infoAdmin = infoAdmin;
     }
-    res.render("client/pages/chat/index",{
+    res.render("admin/pages/chat/index",{
         pageTitle: "Chat",
         chats: chats
     });
