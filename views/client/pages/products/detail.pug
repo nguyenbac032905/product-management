@@ -3,46 +3,47 @@ include ../../mixins/box-head.pug
 
 block main
     .product-detail
-        .container.my-5
-            .row
-                .col-6
-                    .inner-thumb
-                        img(src=product.thumbnail, alt=product.title)
-                .col-6
-                    h1.inner-title= product.title
-
-                    if product.category
-                        .inner-category
-                            span Danh mục:
-                                a(href=`/products/${product.category.slug}`)= product.category.title
-
-                    if product.priceNew
-                        .inner-price-new #{product.priceNew}$
-                    if product.price
-                        .inner-price-old #{product.price}$
-                    if product.discountPercentage
-                        .inner-percent
-                            | Giảm tới 
-                            span #{product.discountPercentage}%
-                    if product.stock
-                        .inner-stock
-                            | Còn lại 
-                            span #{product.stock}
-                            |  sản phẩm
-
-                    form(action=`/cart/add/${product.id}` method="POST")
-                        input.form-control.mb-2(
-                            type="number"
-                            name="quantity"
-                            value="1"
-                            min="1"
-                            max=product.stock
-                        )
-                        button.btn.btn-success.btn-block(type="submit") Thêm vào giỏ hàng
-
-        hr
-        .container.my-5
-            .row
-                .col-12
+        .container
+            .product-detail_box
+                .product-detail_box-left
+                        .product-detail_box-thumbnail
+                            img(src=product.thumbnail, alt=product.title)
+                .product-detail_box-right
+                    .product-detail_box-info
+                        .product-detail_box-title
+                            h4 <span>#{product.featured=="1" ? "Yêu thích+" : ""}</span>#{product.title}
+                        .product-detail_box-price
+                            if product.newPrice
+                                .product-detail_box-price-new #{product.newPrice}đ
+                            if product.price
+                                .product-detail_box-price-old #{product.price}đ
+                            if product.discountPercentage
+                                .product-detail_box-percent
+                                    | Giảm tới 
+                                    span #{product.discountPercentage}%
+                        if product.stock
+                            .product-detail_box-stock
+                                | Còn lại 
+                                span #{product.stock}
+                                |  sản phẩm
+                        if product.category
+                            .product-detail_box-category
+                                span Xem thêm sản phẩm thuộc: 
+                                a(href=`/products/${product.category.slug}`) #{product.category.title}
+                        form(action=`/cart/add/${product.id}` method="POST")
+                            .product-detail_box-input
+                                label(for="quantity") Số lượng:
+                                input.form-control(
+                                    type="number"
+                                    name="quantity"
+                                    value="1"
+                                    min="1"
+                                    id="quantity"
+                                    max=product.stock
+                                )
+                                .product-detail_box-button 
+                                    button(type="submit") Thêm vào giỏ hàng
+            .product-detail_description
+                .product-detail_description-title
                     +box-head("Mô tả sản phẩm")
-                    .inner-desc !{product.description}
+                .product-detail_description-desc !{product.description}
