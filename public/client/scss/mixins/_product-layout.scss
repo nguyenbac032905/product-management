@@ -54,13 +54,52 @@
         width: 100%;
         flex-wrap: wrap;
         .product-item{
-            width: calc(100%/5 - 100px/5);
+            width: calc(100%/5 - 80px/5);
             margin-right: 20px;
             margin-bottom: 20px;
+            &:nth-child(5n){
+                margin-right: 0;
+            }
         }
     }
-    &-box:nth-child(5n){
-        margin-right: 0;
+    @media (max-width: 1199.98px) {
+        &-box{
+            .product-item{
+                width: calc(100%/4 - 60px/4);
+                &:nth-child(5n){
+                    margin-right: 20px;
+                }
+                &:nth-child(4n){
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    @media (max-width: 850px) {
+        &-box{
+            .product-item{
+                width: calc(100%/3 - 40px/3);
+                &:nth-child(4n){
+                    margin-right: 20px;
+                }
+                &:nth-child(3n){
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    @media (max-width: 565.98px) {
+        &-box{
+            .product-item{
+                width: calc(100%/2 - 20px/2);
+                &:nth-child(3n){
+                    margin-right: 20px;
+                }
+                &:nth-child(2n){
+                    margin-right: 0;
+                }
+            }
+        }
     }
 
 }

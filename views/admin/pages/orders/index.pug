@@ -1,0 +1,62 @@
+extends ../../layouts/default.pug
+
+block main
+    if(role.permission.includes("orders_view"))
+        h1.mb-4 Danh sách đơn hàng
+        .card.mb-3
+            .card-header Danh sách
+            .card-body
+                table(class="table table-hover table-sm")
+                    thead
+                        tr
+                            th STT
+                            th Họ tên
+                            th Số điện thoại
+                            th Địa chỉ
+                            th Trạng thái
+                            th Hành động
+                    tbody
+                        if(records && records.length>0)
+                            each item, index in records
+                                tr
+                                    td #{index + 1}
+                                    td #{item.userInfo.fullName}
+                                    td #{item.userInfo.phone}
+                                    td #{item.userInfo.address}
+                                    if(role.permission.includes("orders_edit"))
+                                        td
+                                            if item.status === "active"
+                                                a(
+                                                    href="javascript:;"
+                                                    class="badge badge-success"
+                                                    data-status="active"
+                                                ) Đã giao
+                                            else
+                                                a(
+                                                    href="javascript:;"
+                                                    class="badge badge-danger"
+                                                    data-status="inactive"
+                                                ) Chưa giao
+                                    else 
+                                        td
+                                            if item.status === "active"
+                                                button(
+                                                    class="badge badge-success"
+                                                ) Đã giao
+                                            else
+                                                button(
+                                                    class="badge badge-danger"
+                                                ) Chưa giao
+                                    td
+                                        a(
+                                            class="btn btn-secondary btn-sm"
+                                            href=`${prefixAdmin}/orders/detail/${item.id}`
+                                        ) Chi tiết
+                                        if(role.permission.includes("orders_delete"))
+                                            button(
+                                                class="btn btn-danger btn-sm ml-1"
+                                                type="button"
+                                            ) Xóa
+                                    
+    else 
+        div bạn không có quyền xem

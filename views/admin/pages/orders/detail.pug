@@ -1,0 +1,62 @@
+extends ../../layouts/default.pug
+block main 
+    .order
+        .container
+            if order
+                .order_title
+                    if order.status === "active"
+                        div(class="alert alert-success") Đã giao
+                    else
+                        div(class="alert alert-danger") Chưa giao
+                .order_user
+                    .order_user-title
+                        h4 Thông tin cá nhân
+                    .order_user-info
+                        table
+                            tbody
+                                tr
+                                    td Họ tên:
+                                    td 
+                                        b #{order.userInfo.fullName}
+                                tr
+                                    td Số điện thoại:
+                                    td 
+                                        b #{order.userInfo.phone}
+                                tr
+                                    td Địa chỉ:
+                                    td 
+                                        b #{order.userInfo.address}
+            
+                .order_product
+                    .order_product-title
+                        h4(class="mb-2") Thông tin đơn hàng
+                    .order_product-table
+                        table
+                            thead
+                                tr.title
+                                    th Sản Phẩm
+                                    th Giá tiền
+                                    th Số lượng
+                                    th Thành tiền
+                            tbody
+                                if(order.products.length > 0)
+                                    each item in order.products 
+                                        tr.order_left-product
+                                            td.order_left-info
+                                                a
+                                                    img(src=item.productInfo.thumbnail, alt=item.productInfo.title, width="80px")
+                                                    p #{item.productInfo.title}
+                                            td.order_left-text
+                                                .order_left-price 
+                                                    .order_left-pricenew #{item.newPrice.toLocaleString('vi-VN')} đ
+                                                    .order_left-priceold #{item.price.toLocaleString('vi-VN')} đ
+                                            td.order_left-text
+                                                .order_left-quantity #{item.quantity}
+                                            td.order_left-text
+                                                .order_left-sum #{(item.quantity*item.newPrice).toLocaleString('vi-VN')} đ
+                
+                if order.products.length > 0
+                    .order_total
+                        h3 Tổng đơn hàng: 
+                            span #{order.orderTotalPrice.toLocaleString('vi-VN')} đ
+

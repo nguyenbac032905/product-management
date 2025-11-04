@@ -8,6 +8,6 @@ mixin product-item(item)
                 img(src=item.thumbnail, alt=item.title)
             .inner-info-product
                 .inner-price
-                    .inner-price-new #{item.priceNew}đ
-                    .inner-price-old #{item.price}đ
+                    .inner-price-new #{item.priceNew.toLocaleString('vi-VN')}đ
+                    .inner-price-old #{item.price.toLocaleString('vi-VN')}đ
                 h3.inner-title #{item.title}

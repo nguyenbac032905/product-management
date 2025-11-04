@@ -47,15 +47,15 @@ block main
                                                 p #{item.productInfo.title}
                                         td.order_left-text
                                             .order_left-price 
-                                                .order_left-pricenew #{item.newPrice} đ
-                                                .order_left-priceold #{item.price} đ
+                                                .order_left-pricenew #{item.newPrice.toLocaleString('vi-VN')} đ
+                                                .order_left-priceold #{item.price.toLocaleString('vi-VN')} đ
                                         td.order_left-text
                                             .order_left-quantity #{item.quantity}
                                         td.order_left-text
-                                            .order_left-sum #{item.quantity*item.newPrice} đ
+                                            .order_left-sum #{(item.quantity*item.newPrice).toLocaleString('vi-VN')} đ
             
             if order.products.length > 0
                 .order_total
                     h3 Tổng đơn hàng: 
-                        span #{order.orderTotalPrice} đ
+                        span #{order.orderTotalPrice.toLocaleString('vi-VN')} đ
 

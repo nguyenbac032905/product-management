@@ -20,7 +20,7 @@ module.exports.index = async (req,res) =>{
 
     const newProducts = productHelper.newPrice(products);
     newProducts.cartTotalPrice = newProducts.reduce((sum,item) => {
-        return sum + item.quantity*item.priceNew;
+        return sum + item.quantity*parseInt(item.priceNew);
     },0);
     res.render("client/pages/cart/index",{
         pageTitle: "Giỏ hàng",

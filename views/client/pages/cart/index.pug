@@ -29,8 +29,8 @@ block main
                                                 p #{item.title}
                                         td.cart_left-text
                                             .cart_left-price 
-                                                .cart_left-pricenew #{item.priceNew} đ
-                                                .cart_left-priceold #{item.price} đ
+                                                .cart_left-pricenew #{item.priceNew.toLocaleString('vi-VN')} đ
+                                                .cart_left-priceold #{item.price.toLocaleString('vi-VN')} đ
                                         td.cart_left-text
                                             input(
                                                 type="number",
@@ -41,7 +41,7 @@ block main
                                                 style="width: 60px"
                                             )
                                         td.cart_left-text
-                                            .cart_left-sum #{item.quantity*item.priceNew} đ
+                                            .cart_left-sum #{(item.quantity*item.priceNew).toLocaleString('vi-VN')} đ
                                         td.cart_left-btn
                                             a(
                                                 href=`/cart/delete/${item.id}`,
@@ -52,14 +52,14 @@ block main
                     .cart_right-provisional 
                         div 
                             p Tạm tính: 
-                            span #{products.cartTotalPrice} đ
+                            span #{products.cartTotalPrice.toLocaleString('vi-VN')} đ
                         div 
                             p Giảm giá: 
                             span 0 đ
                     .cart_right-total 
                         div 
                             p Tổng cộng:
-                            span #{products.cartTotalPrice} đ
+                            span #{products.cartTotalPrice.toLocaleString('vi-VN')} đ
                         div.cart_right-vat (đã bao gồm VAT)
                     .cart_right-button
                         a(href="/checkout") THANH TOÁN

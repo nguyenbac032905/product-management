@@ -69,7 +69,6 @@ module.exports.success = async(req,res) =>{
         product.totalPrice = product.newPrice* product.quantity;
     }
     order.orderTotalPrice = order.products.reduce((sum,item) => sum+item.totalPrice,0);
-    console.log(order)
     res.render("client/pages/checkout/success",{
         pageTitle: "success",
         order: order

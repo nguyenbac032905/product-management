@@ -262,4 +262,124 @@
   line-height: 1;
 }
 
+.order {
+  margin: 50px 0;
+}
+.order_user {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 20px 24px;
+  color: #333;
+  margin: 30px 0;
+}
+.order_user-title {
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+.order_user-title h4 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+}
+.order_user-info table {
+  width: 100%;
+}
+.order_user-info table tr td {
+  padding: 10px 8px;
+  font-size: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.order_user-info table tr td:first-child {
+  width: 20%;
+  font-weight: 500;
+  color: #333;
+}
+.order_user-info table tr td b {
+  color: #000;
+  font-weight: 600;
+}
+.order_product {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 20px 24px;
+  color: #333;
+  margin: 30px 0;
+}
+.order_product-title {
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+.order_product-title h4 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+}
+.order_product-table table {
+  width: 100%;
+}
+.order_product-table table .order_left-info {
+  width: 50%;
+}
+.order_product-table table th, .order_product-table table td {
+  padding: 12px 16px;
+}
+.order_product-table table .title {
+  background-color: rgb(247, 247, 247);
+}
+.order_product-table table .order_left-product {
+  border-bottom: 0.5px solid #e5e7eb;
+}
+.order_product-table table .order_left-info a {
+  display: flex;
+  align-items: center;
+}
+.order_product-table table .order_left-info a img {
+  margin-right: 10px;
+}
+.order_product-table table .order_left-info a p {
+  color: #333;
+}
+.order_product-table table .order_left-text {
+  text-align: center;
+  color: #333;
+}
+.order_product-table table .order_left-text .order_left-pricenew {
+  font-weight: 500;
+}
+.order_product-table table .order_left-text .order_left-priceold {
+  text-decoration: line-through;
+}
+.order_product-table table .order_left-btn {
+  position: relative;
+}
+.order_product-table table .order_left-btn a {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.order_product-table table .order_left-btn a i {
+  font-size: 16px;
+  color: #ccc;
+  transition: all 0.2s ease-in-out;
+}
+.order_product-table table .order_left-btn a:hover i {
+  font-size: 18px;
+  color: #d70018;
+}
+.order_total {
+  text-align: end;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #ff6600;
+}
+.order_total span {
+  font-weight: 700;
+}
+
 /*# sourceMappingURL=main.css.map */

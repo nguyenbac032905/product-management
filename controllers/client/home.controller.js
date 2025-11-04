@@ -4,19 +4,27 @@ const ProductCategory = require("../../models/product-category.model");
 const createTreeHelper = require("../../helpers/createTree");
 //[GET] /
 module.exports.index = async (req, res) => {
+    //lấy ra sản phẩm nổi bật
     let find = {
         deleted: false,
         status: "active",
         featured: "1"
     };
-    const productsFeatured = await Product.find(find);
+    const productsFeatured = await Product.find(find).limit(6);
     const newProductsFeatured = newPriceProduct.newPrice(productsFeatured);
-
+    // lấy ra sản phẩm mới
     const productsNew = await Product.find({
         deleted: false,
         status: "active"
     }).sort({position: "desc"}).limit(6);
     const newProductsNew = newPriceProduct.newPrice(productsNew);
+    //lấy ra sản phẩm giảm giá
+    const productsSale = await Product.find({
+        deleted: false,
+        status: "active",
+        discountPercentage: {$gt: 0}
+    });
+    const newProductsSale = newPriceProduct.newPrice(productsSale);
     //lấy ra category
     const productCategory = await ProductCategory.find({deleted: false}).lean();
     const newProductCategory = createTreeHelper.tree(productCategory);
@@ -24,6 +32,7 @@ module.exports.index = async (req, res) => {
         pageTitle: "Trang chủ",
         productsFeatured: newProductsFeatured,
         newProductsNew: newProductsNew,
-        layoutProductCategory: newProductCategory
+        layoutProductCategory: newProductCategory,
+        newProductsSale: newProductsSale
     });
 };

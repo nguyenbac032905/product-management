@@ -15,6 +15,10 @@ const orderSchema = new mongoose.Schema({
             discountPercentage: Number
         }
     ],
+    status: {
+        type: String,
+        default: "inactive"
+    },
     deleted:{
         type: Boolean,
         default: false
