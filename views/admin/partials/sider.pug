@@ -19,10 +19,14 @@
         li
           a(href=`${prefixAdmin}/accounts`) List account
       li
-          a(href=`${prefixAdmin}/settings/general`) Cài đặt chung
+        a(href=`${prefixAdmin}/settings/general`) Cài đặt chung
       if(role.permission.includes("customers_view"))
         li
-            a(href=`${prefixAdmin}/customers`) Khách hàng
+          a(href=`${prefixAdmin}/customers`) Khách hàng
       if(role.permission.includes("customers_view"))
         li
-            a(href=`${prefixAdmin}/orders`) Đơn hàng
+          a(href=`${prefixAdmin}/orders`) Đơn hàng
+      li
+        a(href=`${prefixAdmin}/blogs`) Bài viết
+      li
+        a(href=`${prefixAdmin}/blog-category`) Danh mục Bài viết

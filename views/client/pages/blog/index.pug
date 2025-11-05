@@ -1,0 +1,36 @@
+extends ../../layouts/default.pug
+
+block main
+    .blog-page
+        .container
+            .blog-page_row
+                .blog-page_sidebar-left
+                    ul.blog-page_menu
+                        each item in blogCategory
+                            li
+                                a(href=`/blogs/${item.slug}`) 
+                                    i.fa-regular.fa-newspaper
+                                    span #{item.title}
+                                    i.fa-solid.fa-chevron-right
+
+                .blog-page_main
+                    .blog-page_main-title 
+                        h2 #{pageTitle}
+                    each blog in blogs
+                        .blog-page_main-item
+                            .blog-page_main-thumbnail
+                                a(href=`/blogs/detail/${blog.slug}`)
+                                    img(src=blog.thumbnail alt=blog.title)
+                            .blog-page_main-info
+                                h3
+                                    a(href=`/blogs/detail/${blog.slug}`) #{blog.title}
+                                p !{blog.description}
+                .blog-page_sidebar-right
+                    h2 S-News Cuối Tuần
+                    each blog in blogsLatest
+                        .blog-page_sidebar-right_item
+                            a(href=`/blogs/detail/${blog.slug}`)
+                                .blog-page_sidebar-right_image
+                                    img(src=blog.thumbnail alt=blog.title)
+                            .blog-page_sidebar-right_info
+                                a(href=`/blogs/detail/${blog.slug}`) #{blog.title}

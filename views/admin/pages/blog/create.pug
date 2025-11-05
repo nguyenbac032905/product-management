@@ -1,0 +1,89 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/renderOption.pug
+
+block main
+    +alertError(3000)
+    h1(class="mb-4") Thêm mới Bài viết
+    form(
+        action=`${prefixAdmin}/blogs/create`
+        id="form-create-blog"
+        method="POST"
+        enctype="multipart/form-data"
+    )
+        div.form-group
+            label(for="title") Tiêu đề
+            input.form-control(
+            type="text"
+            id="title"
+            name="title"
+            required
+            )
+        div.form-group
+            label(for="blog_category_id") Danh mục
+            select(name="blog_category_id" id="blog_category_id" class="form-control")
+                option(value="") --Chọn danh mục--
+                if category
+                each item in category
+                    option(value=item._id) #{item.title}
+        div.form-group
+            label(for="desc") Mô tả
+            textarea(
+            class="form-control texarea-mce"
+            id="desc"
+            name="description"
+            rows="5"
+            )
+        div.form-group
+            label(for="content") Nội dung
+            textarea(
+            class="form-control texarea-mce"
+            id="content"
+            name="content"
+            rows="5"
+            )
+
+        div(class="form-group" upload-image)
+            label(for="thumbnail") Ảnh Bìa
+            input(
+            class="form-control-file"
+            type="file"
+            id="thumbnail"
+            name="thumbnail"
+            accept="image/*"
+            upload-image-input
+            )
+            span(button-delete-image) x
+            img(src="" upload-image-preview class="image-preview")
+
+        div.form-group
+            label(for="position") Vị trí
+            input.form-control(
+            type="number"
+            id="position"
+            name="position"
+            placeholder="Tự động tăng"
+            min="1"
+            )
+
+        div.form-group.form-check.form-check-inline
+            input.form-check-input(
+            type="radio"
+            id="statusActive"
+            name="status"
+            value="active"
+            checked
+            )
+            label.form-check-label(for="statusActive") Hoạt động
+
+        div.form-group.form-check.form-check-inline
+            input.form-check-input(
+            type="radio"
+            id="statusInactive"
+            name="status"
+            value="inactive"
+            )
+            label.form-check-label(for="statusInactive") Không hoạt động
+
+        div.form-group
+            button.btn.btn-primary(type="submit") Tạo mới

@@ -1,0 +1,74 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/renderOption.pug
+
+block main
+  h1(class="mb-4") Thêm mới danh mục Bài viết
+  +alertError(5000)
+
+  form(
+    action=`${prefixAdmin}/blog-category/create`
+    method="POST"
+    enctype="multipart/form-data"
+  )
+    .form-group
+      label(for="title") Tiêu đề
+      input(
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        required
+      )
+
+    .form-group.upload-image
+      label(for="thumbnail") Ảnh
+      input(
+        type="file"
+        class="form-control-file upload-image-input"
+        id="thumbnail"
+        name="thumbnail"
+        accept="image/*"
+      )
+      img(
+        src=""
+        class="image-preview upload-image-preview"
+      )
+
+    .form-group
+      label(for="position") Vị trí
+      input(
+        type="number"
+        class="form-control"
+        id="position"
+        name="position"
+        placeholder="Tự động tăng"
+        min="1"
+      )
+
+    .form-group.form-check.form-check-inline
+      input(
+        type="radio"
+        class="form-check-input"
+        id="statusActive"
+        name="status"
+        value="active"
+        checked
+      )
+      label(for="statusActive" class="form-check-label") Hoạt động
+
+    .form-group.form-check.form-check-inline
+      input(
+        type="radio"
+        class="form-check-input"
+        id="statusInActive"
+        name="status"
+        value="inactive"
+      )
+      label(for="statusInActive" class="form-check-label") Dừng hoạt động
+
+    .form-group
+      button(
+        type="submit"
+        class="btn btn-primary"
+      ) Tạo mới

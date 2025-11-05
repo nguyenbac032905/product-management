@@ -3,20 +3,20 @@ const mongoose = require("mongoose");
 const slug = require('mongoose-slug-updater');
 mongoose.plugin(slug);
 //khai báo bộ khung dữ liệu
-const productSchema = new mongoose.Schema({
+const blogSchema = new mongoose.Schema({
     title: String,
-    product_category_id:{
+    blog_category_id:{
         type: String,
         default: ""
     },
-    description: String,
-    price: Number,
-    discountPercentage: Number,
-    stock: Number,
+    content: String,
     thumbnail: String,
-    status: String,
+    description: String,
+    status: {
+        type: String,
+        default: 'active'
+    },
     position: Number,
-    featured: String,
     slug:{
         type: String,
         slug: "title",
@@ -42,12 +42,11 @@ const productSchema = new mongoose.Schema({
         account_id: String,
         updatedAt: Date
         }
-    ],
-    deletedAt: Date
+    ]
 },{
   //nếu set timestamps = true thì tự động thêm 2 thuộc tính createAt và deleteAt 
   timestamps:true
 });
 //tạo model
-const Product = mongoose.model("Product", productSchema, "products");
-module.exports = Product;
+const Blog = mongoose.model("Blog", blogSchema, "blogs");
+module.exports = Blog;

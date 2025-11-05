@@ -10,6 +10,8 @@ const settingGeneralRoutes = require("./setting-general.route");
 const chatRoutes = require("./chat.route");
 const customerRoutes = require("./customer.route");
 const orderRoutes = require("./order.route");
+const blogRoutes = require("./blog.route");
+const blogCategoryRoutes = require("./blog-category.route");
 
 const systemConfig = require("../../config/system");
 
@@ -28,4 +30,6 @@ module.exports = (app) => {
   app.use(PATH_ADMIN + "/chat",authMiddleware.requireAuth,chatMiddleware.support,chatRoutes);
   app.use(PATH_ADMIN + "/customers",authMiddleware.requireAuth,chatMiddleware.support,customerRoutes);
   app.use(PATH_ADMIN + "/orders",authMiddleware.requireAuth,chatMiddleware.support,orderRoutes);
+  app.use(PATH_ADMIN + "/blogs",authMiddleware.requireAuth,chatMiddleware.support,blogRoutes);
+  app.use(PATH_ADMIN + "/blog-category",authMiddleware.requireAuth,chatMiddleware.support,blogCategoryRoutes);
 };

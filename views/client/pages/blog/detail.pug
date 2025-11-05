@@ -1,0 +1,28 @@
+extends ../../layouts/default.pug
+
+block main
+    .blog-detail
+        .container
+            .blog-detail_row
+                .blog-detail_sidebar
+                    ul.blog-detail_menu
+                        each item in blogCategory
+                            li
+                                a(href=`/blogs/${item.slug}`) 
+                                    i.fa-regular.fa-newspaper
+                                    span #{item.title}
+                                    i.fa-solid.fa-chevron-right
+
+                .blog-detail_main
+                    .blog-detail_thumbnail
+                        img(src=blog.thumbnail alt=blog.title)
+                    .blog-detail_info
+                        .blog-detail_category
+                            span.category #{blog.categoryBlog.title}
+                        .blog-detail_title 
+                            h1 #{blog.title}
+                        .blog-detail_decs
+                            h2 !{blog.description}
+                        .blog-detail_content !{blog.content}
+
+                    

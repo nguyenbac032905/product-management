@@ -26,3 +26,20 @@ module.exports.detail = async (req,res) =>{
         order: order
     });
 };
+module.exports.changeStatus = async (req,res) =>{
+    const status = req.params.status;
+    const orderId = req.params.orderId;
+    
+    await Order.updateOne({_id: orderId},{status: status});
+
+    req.flash('success', 'Cập nhật trạng thái thành công!');
+    
+    res.redirect(req.get("Referer") || "/admin/orders");
+}
+module.exports.delete = async (req,res) =>{
+    const orderId = req.params.orderId;
+    await Order.updateOne({_id: orderId},{deleted: true});
+    req.flash('success', 'Xóa đơn hàng thành công!');
+    
+    res.redirect(req.get("Referer") || "/admin/orders");
+}
