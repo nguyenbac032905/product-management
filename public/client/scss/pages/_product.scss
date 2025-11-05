@@ -139,6 +139,59 @@
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         border-radius: 5px;
         padding: 20px;
+        &_title {
+            font-size: 22px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #222;
+            margin-bottom: 20px;
+            border-left: 4px solid #0d6efd;
+            padding-left: 10px;
+        }
+
+        &_desc {
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        &_content {
+            p {
+                margin-bottom: 15px;
+                text-align: justify;
+            }
+
+            h2, h3 {
+                font-weight: 600;
+                margin-top: 25px;
+                margin-bottom: 10px;
+                color: #111;
+            }
+
+            ul, ol {
+                margin-left: 25px;
+                margin-bottom: 20px;
+
+                li {
+                    margin-bottom: 8px;
+                }
+            }
+
+            img {
+                max-width: 100%;
+                border-radius: 8px;
+                margin: 20px 0;
+            }
+
+            strong {
+                color: #000;
+            }
+
+            @media (max-width: 768px) {
+                font-size: 15px;
+                padding: 15px;
+            }
+        }
     }
     @media (max-width: 991.98px) {
         &_box{

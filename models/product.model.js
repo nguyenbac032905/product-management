@@ -10,6 +10,7 @@ const productSchema = new mongoose.Schema({
         default: ""
     },
     description: String,
+    content: String,
     price: Number,
     discountPercentage: Number,
     stock: Number,

@@ -14,9 +14,9 @@ block main
                             h4 <span>#{product.featured=="1" ? "Yêu thích+" : ""}</span>#{product.title}
                         .product-detail_box-price
                             if product.newPrice
-                                .product-detail_box-price-new #{product.newPrice}đ
+                                .product-detail_box-price-new #{product.newPrice.toLocaleString('vi-VN')}đ
                             if product.price
-                                .product-detail_box-price-old #{product.price}đ
+                                .product-detail_box-price-old #{product.price.toLocaleString('vi-VN')}đ
                             if product.discountPercentage
                                 .product-detail_box-percent
                                     | Giảm tới 
@@ -47,3 +47,4 @@ block main
                 .product-detail_description-title
                     +box-head("Mô tả sản phẩm")
                 .product-detail_description-desc !{product.description}
+                .product-detail_description-content !{product.content}

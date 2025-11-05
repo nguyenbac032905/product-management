@@ -59,6 +59,15 @@ block main
             ) #{value=product.description}
 
         div.form-group
+            label(for="content") Nội dung
+            textarea(
+            class="form-control texarea-mce"
+            id="content"
+            name="content"
+            rows="5"
+            ) #{value=product.content}
+
+        div.form-group
             label(for="price") Giá
             input.form-control(
             type="number"
