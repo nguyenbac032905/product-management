@@ -10,13 +10,13 @@ module.exports.index = async (req, res) => {
         status: "active",
         featured: "1"
     };
-    const productsFeatured = await Product.find(find).limit(8);
+    const productsFeatured = await Product.find(find).limit(10);
     const newProductsFeatured = newPriceProduct.newPrice(productsFeatured);
     // lấy ra sản phẩm mới
     const productsNew = await Product.find({
         deleted: false,
         status: "active"
-    }).sort({position: "desc"}).limit(8);
+    }).sort({position: "desc"}).limit(10);
     const newProductsNew = newPriceProduct.newPrice(productsNew);
     //lấy ra sản phẩm giảm giá
     const productsSale = await Product.find({
