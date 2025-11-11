@@ -816,6 +816,46 @@ ul {
   color: #d70018;
 }
 
+/* showalear */
+[show-alert] {
+  position: fixed;
+  top: 70px;
+  right: 15px;
+  z-index: 9999;
+}
+
+/* Khi có class .alert-hidden thì chạy animation */
+[show-alert].alert-hidden {
+  animation-name: alert-hidden;
+  animation-duration: 0.5s; /* thời gian chạy animation */
+  animation-fill-mode: forwards; /* giữ trạng thái cuối cùng */
+}
+
+/* Keyframes animation */
+@keyframes alert-hidden {
+  from {
+    right: 15px;
+    opacity: 1;
+  }
+  to {
+    right: -100%;
+    opacity: 0;
+    display: none;
+  }
+}
+[show-alert] [close-alert] {
+  background: rgba(255, 255, 255, 0.768627451); /* sửa lại giá trị màu (bạn bị dư chữ 'p') */
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* showalear */
 .home_products-sale {
   margin: 50px;
 }
