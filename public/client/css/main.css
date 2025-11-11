@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 .layout {
   display: flex;
   flex-direction: column;
@@ -8,10 +7,6 @@
 
 .main {
   flex: 1;
-}
-
-html, body {
-  font-family: Inter, "Inter Fallback", Arial, sans-serif;
 }
 
 a {
