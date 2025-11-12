@@ -577,6 +577,7 @@ ul {
   min-height: 100%;
   display: flex;
   gap: 20px;
+  min-height: 280px;
 }
 .category_wrapper-inner .category-panel .panel-left {
   flex: 7 1 0;
@@ -595,6 +596,7 @@ ul {
 }
 .category_wrapper-inner .category-panel .panel-left .banner-images a img {
   width: 100%;
+  aspect-ratio: 200/90;
 }
 .category_wrapper-inner .category-panel .panel-left .slick-track {
   display: flex !important;
@@ -614,6 +616,10 @@ ul {
   position: relative;
   border-radius: 8px;
   margin-bottom: 30px;
+  /* 🆕 Giữ chỗ khi ảnh chưa load */
+  aspect-ratio: 600/260;
+  min-height: 260px;
+  background-color: #f6f6f6;
 }
 .category_wrapper-inner .category-panel .panel-left .banner-slider img {
   width: 100%;

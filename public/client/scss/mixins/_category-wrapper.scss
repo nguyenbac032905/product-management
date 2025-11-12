@@ -12,6 +12,7 @@
             min-height: 100%;
             display: flex;
             gap: 20px;
+            min-height: 280px; // 🆕 thêm dòng này
 
             .panel-left {
                 flex: 7 1 0;
@@ -30,6 +31,7 @@
 
                         img {
                             width: 100%;
+                            aspect-ratio: 200 / 90; // 🆕 thêm dòng này
                         }
                     }
                 }
@@ -55,6 +57,10 @@
                     position: relative;
                     border-radius: 8px;
                     margin-bottom: 30px;
+                    /* 🆕 Giữ chỗ khi ảnh chưa load */
+                    aspect-ratio: 600 / 260; // tương ứng với width/height bạn đặt trong Pug
+                    min-height: 260px;       // fallback cho trình duyệt cũ
+                    background-color: #f6f6f6; // để tránh khung trống nháy trắng
 
                     img {
                         width: 100%;
