@@ -4,7 +4,8 @@ header.header
         .header_container
             .header_logo
                 a.header_logo-image(href="/")
-                    img(src=settingGeneral.logo, alt=settingGeneral.websiteName)
+                    - const logo = settingGeneral.logo.replace('/upload/', '/upload/f_auto,q_auto,w_180,h_40,c_fill/')
+                    img(width="180" height="40" fetchpriority="high" decoding="async" src=logo alt=settingGeneral.websiteName)
                 span Mua sắm nhanh, Giá cực xanh!
                 
             .header_search
