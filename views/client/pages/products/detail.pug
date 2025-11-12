@@ -11,7 +11,8 @@ block main
                 .product-detail_box-right
                     .product-detail_box-info
                         .product-detail_box-title
-                            h4 <span>#{product.featured=="1" ? "Yêu thích+" : ""}</span>#{product.title}
+                            span #{product.featured=="1" ? "Yêu thích+" : ""}
+                            h1 #{product.title}
                         .product-detail_box-price
                             if product.newPrice
                                 .product-detail_box-price-new #{product.newPrice.toLocaleString('vi-VN')}đ

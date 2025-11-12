@@ -35,11 +35,9 @@
         &-title{
             font-size: 20px;
             color: #333;
-            h4{
-                display: flex;
-                align-items: center;
-                margin-bottom: 20px;
-            }
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
             span{
                 background-color: #ee4d2d;
                 font-size: 12px;
@@ -139,7 +137,9 @@
         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         border-radius: 5px;
         padding: 20px;
-        &_title {
+        max-width: 100%;
+        overflow: hidden;
+        &-title {
             font-size: 22px;
             font-weight: 700;
             text-transform: uppercase;
@@ -149,14 +149,21 @@
             padding-left: 10px;
         }
 
-        &_desc {
+        &-desc {
             font-weight: 500;
             margin-bottom: 20px;
             color: #555;
         }
 
-        &_content {
+        &-content {
+            width: 100% !important;
+            img {
+                width: 100% !important;
+                border-radius: 8px;
+                margin: 20px 0;
+            }
             p {
+                width: 100%;
                 margin-bottom: 15px;
                 text-align: justify;
             }
@@ -175,12 +182,6 @@
                 li {
                     margin-bottom: 8px;
                 }
-            }
-
-            img {
-                max-width: 100%;
-                border-radius: 8px;
-                margin: 20px 0;
             }
 
             strong {
