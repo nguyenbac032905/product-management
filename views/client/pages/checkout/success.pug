@@ -28,7 +28,12 @@ block main
         
             .order_product
                 .order_product-title
-                    h4(class="mb-2") Thông tin đơn hàng
+                    h4(class="mb-2") Thông tin đơn hàng 
+                .order_product-payment
+                    if(order.paymentStatus == "paid")
+                        span(class="payment_status paid") [Đã thanh toán]
+                    else 
+                        span(class="payment_status pending") [Chưa thanh toán]
                 .order_product-table
                     table
                         thead

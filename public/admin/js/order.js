@@ -7,7 +7,7 @@ if(btnChangeStatus.length > 0){
         button.addEventListener("click",() =>{
             const statusCurrent = button.getAttribute("data-status");
             const idProduct = button.getAttribute("data-id"); 
-            let changedStatus = statusCurrent == "active" ? "inactive" : "active";
+            let changedStatus = statusCurrent == "initial" ? "confirmed" : "initial";
 
             const action = `${path}/${changedStatus}/${idProduct}`;
             

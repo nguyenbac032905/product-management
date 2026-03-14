@@ -18,7 +18,7 @@ module.exports.index = async (req,res) => {
                 products.push(product);
             }
         }
-    
+        
         const newProducts = productHelper.newPrice(products);
         newProducts.cartTotalPrice = newProducts.reduce((sum,item) => {
             return sum + item.quantity*item.priceNew;
@@ -29,7 +29,7 @@ module.exports.index = async (req,res) => {
     });
 };
 module.exports.orderPost = async (req,res) =>{
-    const userInfo = req.body;
+    const paymentMethod = req.body.paymentMethod;
     const cartId = req.cookies.cartId;
     const cart = await Cart.findOne({_id: cartId});
     const products = [];
@@ -48,12 +48,19 @@ module.exports.orderPost = async (req,res) =>{
     }
     const order = new Order({
         cart_id: cartId,
-        userInfo: userInfo,
+        userInfo: {
+            fullName: req.body.fullName,
+            phone: req.body.phone,
+            address: req.body.address
+        },
         products: products
     });
     order.save();
     await Cart.updateOne({_id: cartId},{products: []});
-
+    if(paymentMethod == "vnpay"){
+        res.redirect(`/payment/create_payment_url/${order.id}`);
+        return;
+    }
     res.redirect(`/checkout/success/${order.id}`);
 };
 module.exports.success = async(req,res) =>{

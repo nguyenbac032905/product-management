@@ -12,7 +12,9 @@ module.exports.index = async (req,res) =>{
             typeRoom: "group",
             "users.user_id": record._id
         });
-        record.myRoomId = myRoom._id;
+        if(myRoom){
+            record.myRoomId = myRoom._id;
+        }
     }
     res.render("admin/pages/customer/index",{
         pageTitle: "Customer",

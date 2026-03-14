@@ -16,7 +16,9 @@ block main
                             th Họ tên
                             th Số điện thoại
                             th Địa chỉ
-                            th Trạng thái
+                            th Tình trạng đơn hàng 
+                            th Phương thức thanh toán
+                            th Trạng thái thanh toán
                             th Hành động
                     tbody
                         if(records && records.length>0)
@@ -28,23 +30,23 @@ block main
                                     td #{item.userInfo.address}
                                     if(role.permission.includes("orders_edit"))
                                         td
-                                            if item.status === "active"
+                                            if item.status === "confirmed"
                                                 a(
                                                     href="javascript:;"
                                                     class="badge badge-success"
-                                                    data-status="active"
+                                                    data-status="confirmed"
                                                     data-id=item.id
                                                 ) Đã giao
                                             else
                                                 a(
                                                     href="javascript:;"
                                                     class="badge badge-danger"
-                                                    data-status="inactive"
+                                                    data-status="initial"
                                                     data-id=item.id
                                                 ) Chưa giao
                                     else 
                                         td
-                                            if item.status === "active"
+                                            if item.status === "confirmed"
                                                 button(
                                                     class="badge badge-success"
                                                 ) Đã giao
@@ -52,6 +54,13 @@ block main
                                                 button(
                                                     class="badge badge-danger"
                                                 ) Chưa giao
+                                    td #{item.paymentMethod}
+                                    td 
+                                        .order_product-payment
+                                            if(item.paymentStatus == "paid")
+                                                span(class="payment_status paid") [Đã thanh toán]
+                                            else 
+                                                span(class="payment_status pending") [Chưa thanh toán]
                                     td
                                         a(
                                             class="btn btn-secondary btn-sm"

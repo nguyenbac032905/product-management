@@ -17,7 +17,15 @@ const orderSchema = new mongoose.Schema({
     ],
     status: {
         type: String,
-        default: "inactive"
+        default: "initial"
+    },
+    paymentMethod: {
+        type: String,
+        default: "cod"
+    },
+    paymentStatus: {
+        type: String,
+        default: "pending"
     },
     deleted:{
         type: Boolean,
