@@ -63,8 +63,6 @@ module.exports.index = async (req,res) => {
     vnp_Params['vnp_SecureHash'] = signed;
 
     vnpUrl += '?' + querystring.stringify(vnp_Params, { encode: false });
-    console.log(vnp_Params);
-    console.log(vnpUrl);
     res.redirect(vnpUrl);
 }
 module.exports.returnPayment = async (req,res) => {
@@ -84,7 +82,6 @@ module.exports.returnPayment = async (req,res) => {
     if(secureHash === signed){
         const orderId = vnp_Params['vnp_TxnRef'];
         const rspCode = vnp_Params['vnp_ResponseCode'];
-        console.log(orderId);
         //Kiem tra du lieu co hop le khong, cap nhat trang thai don hang va gui ket qua cho VNPAY theo dinh dang duoi
         if(rspCode === "00"){
             await Order.updateOne({_id: orderId},{$set: {paymentMethod: "vnpay", paymentStatus: "paid"}});

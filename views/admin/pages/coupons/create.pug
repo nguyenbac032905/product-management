@@ -1,0 +1,77 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main
+    h1(class="mb-4") Thêm mới Mã giảm giá
+    +alertError(5000)
+    +alertSuccess(5000)
+
+    form(
+        action=`${prefixAdmin}/coupon/create`
+        method="POST"
+    )
+        .form-group
+            label(for="code") Code
+            input(
+                type="code"
+                class="form-control"
+                id="code"
+                name="code"
+            )
+
+        .form-group
+            label(for="desc") Mô tả
+            textarea(
+                class="form-control"
+                id="desc"
+                name="description"
+                rows="5"
+            )
+        .form-group
+            label(for="discountType") Loại giảm giá
+            select(name="discountType" id="discountType" class="form-control")
+                option(value="percent" selected) Phần trăm 
+                option(value="fixed") Giảm tiền
+        .form-group 
+            label(for="discountValue") Giá trị giảm
+            input(type="number" class="form-control" id="discountValue" name="discountValue")
+        .form-group 
+            label(for="maxDiscount") Số tiền giảm tối đa
+            input(type="number" class="form-control" id="maxDiscount" name="maxDiscount")
+        .form-group 
+            label(for="minOrderValue") Giá trị đơn hàng tối thiểu
+            input(type="number" class="form-control" id="minOrderValue" name="minOrderValue")
+        .form-group 
+            label(for="startDate")
+            input(type="datetime-local" class="form-control" id="startDate" name ="startDate")
+        .form-group 
+            label(for="endDate")
+            input(type="datetime-local" class="form-control" id="endDate" name="endDate")
+            
+
+        .form-group.form-check.form-check-inline
+            input(
+                type="radio"
+                class="form-check-input"
+                id="statusActive"
+                name="status"
+                value="active"
+                checked
+            )
+            label(for="statusActive" class="form-check-label") Hoạt động
+
+            .form-group.form-check.form-check-inline
+            input(
+                type="radio"
+                class="form-check-input"
+                id="statusInActive"
+                name="status"
+                value="inactive"
+            )
+            label(for="statusInActive" class="form-check-label") Dừng hoạt động
+
+        .form-group
+            button(
+                type="submit"
+                class="btn btn-primary"
+            ) Tạo mới

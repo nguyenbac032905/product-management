@@ -1,6 +1,27 @@
 extends ../../layouts/default.pug
 block main
     h1 trang tổng quan
+    .row
+        .col-12
+            .card.mb-4 
+                .card-header Doanh thu bán hàng theo danh mục
+                .card-body
+                    .row 
+                        .col-8
+                            .row 
+                                .col-4 
+                                    select.form-control(name="filter" filterSelect)
+                                        option(value="day") 1 Ngày qua
+                                        option(value="week") 1 Tuần qua 
+                                        option(value="month" selected) 1 Tháng qua 
+                                        option(value="quarter") 1 Quý qua
+                                .col-6 
+                                    div Tổng doanh thu: <span id="totalRevenue"></span> VNĐ
+                            canvas(id="myChart")
+                        .col-4
+                            canvas(id="pieChart")
+            
+        .col-6
     .row.mt-4
         .col-12
             .card.mb-4
@@ -67,3 +88,5 @@ block main
                         b #{statistic.user.active}
                     p Dừng hoạt động: 
                         b #{statistic.user.inactive}
+block script 
+    script(src="/admin/js/dashboard.js")

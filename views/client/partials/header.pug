@@ -6,7 +6,6 @@ header.header
                 a.header_logo-image(href="/")
                     - const logo = settingGeneral.logo.replace('/upload/', '/upload/f_auto,q_auto,w_180,h_40,c_fill/')
                     img(width="180" height="40" fetchpriority="high" decoding="async" src=logo alt=settingGeneral.websiteName)
-                span Mua sắm nhanh, Giá cực xanh!
                 
             .header_search
                 form(action="/search", method="GET")
@@ -32,6 +31,7 @@ header.header
                                 a(href="/user/infoUser") 
                                     <i class="fa-solid fa-user"></i>
                                     span #{user.fullName}
+                                    <i class="fa-solid fa-angle-down"></i>
                 .header_contact 
                     ul 
                         if(user)

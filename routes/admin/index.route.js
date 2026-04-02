@@ -12,6 +12,7 @@ const customerRoutes = require("./customer.route");
 const orderRoutes = require("./order.route");
 const blogRoutes = require("./blog.route");
 const blogCategoryRoutes = require("./blog-category.route");
+const couponRoutes = require("./coupon.route");
 
 const systemConfig = require("../../config/system");
 
@@ -32,4 +33,5 @@ module.exports = (app) => {
   app.use(PATH_ADMIN + "/orders",authMiddleware.requireAuth,chatMiddleware.support,orderRoutes);
   app.use(PATH_ADMIN + "/blogs",authMiddleware.requireAuth,chatMiddleware.support,blogRoutes);
   app.use(PATH_ADMIN + "/blog-category",authMiddleware.requireAuth,chatMiddleware.support,blogCategoryRoutes);
+  app.use(PATH_ADMIN + "/coupon",authMiddleware.requireAuth,chatMiddleware.support,couponRoutes);
 };

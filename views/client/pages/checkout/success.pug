@@ -60,7 +60,18 @@ block main
                                             .order_left-sum #{(item.quantity*item.newPrice).toLocaleString('vi-VN')} đ
             
             if order.products.length > 0
-                .order_total
-                    h3 Tổng đơn hàng: 
-                        span #{order.orderTotalPrice.toLocaleString('vi-VN')} đ
+                .order_product-table
+                    table 
+                        thead
+                            tr.title
+                                th Mã giảm
+                                th Giá trị giảm
+                                th Tổng đơn hàng 
+                        tbody 
+                            tr
+                                td #{order.coupon.coupon_code}
+                                td 
+                                    span.order_total #{order.coupon.discountAmount.toLocaleString('vi-VN')} đ
+                                td 
+                                    span.order_total #{(order.orderTotalPrice-order.coupon.discountAmount).toLocaleString('vi-VN')} đ
 

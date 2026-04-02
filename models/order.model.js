@@ -15,6 +15,13 @@ const orderSchema = new mongoose.Schema({
             discountPercentage: Number
         }
     ],
+    coupon:{
+        coupon_id: String,
+        coupon_code: String,
+        discountType: String,
+        discountValue: Number,
+        discountAmount: Number
+    },
     status: {
         type: String,
         default: "initial"
